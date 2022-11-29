@@ -3,17 +3,18 @@ class FPSCounter
 {
   constructor()
   {
+  }
+
+  init(time)
+  {
+    this.time = time;
+
     this.last_loop = undefined;
     this.count = 1;
     this.total = 1;
     this.fps = 60;
 
     this.fps_samples = [60, 60, 60, 60, 60];
-  }
-
-  init(time)
-  {
-    this.time = time;
   }
 
   update()

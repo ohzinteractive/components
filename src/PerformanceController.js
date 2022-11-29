@@ -2,7 +2,11 @@ import FPSCounter from './FPSCounter';
 
 export default class PerformanceController
 {
-  constructor(omath, configuration, graphics, time, oscreen)
+  constructor()
+  {
+  }
+
+  init(omath, configuration, graphics, time, oscreen)
   {
     this.omath = omath;
     this.configuration = configuration;
