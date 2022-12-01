@@ -3,23 +3,24 @@
 ## Performance Controller
 - Enable or disable optional features, and/or Increase or decrease [DevicePixelRatio](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) depending on current frames per second (FPS).
 
-### Rules
+### **Rules**
 
 On every frame:
 
 | Condition | Action |
 | --- | --- |
-| `FR > 60` & `threshold disabled` | DPR will be increased to a max of 1.25 of the current DPR  |
-| `FR < 30` | Next optional feature in the list is disabled |
-| `FR < 30` & nothing to disable | DPR reduced 0.25 |
-
-- `Framerate` is calculated from 5 samples 1 second long each.
- - `threshold`
- - A breathing window is set, checking for `performance_t > 2` on each frame. Giving the app 2 seconds to stabilize itself. This gets reset after a feature disable or DPR decrease/increase.
+| `FR > 60` & `threshold disabled` | DPR will be **increased** to a max of 1.25 of the current DPR  |
+| `30 < FR < 60` & `threshold disabled` | Enable threshold and **reduce** DPR |
+| `FR < 30` & `opt_to_disable` | Next optional feature in the list gets **disabled** |
+| `FR < 30` & `NO_opt_to_disable` | DPR **reduced** 0.25 |
 
 > **FR** => framerate
 >
 > **DPR** => Device Pixel Ratio
+>
+> - `Framerate` is calculated from 5 samples 1 second long each.
+> - `Threshold` enabled denotes that the framerate is inside the accepted range and should not be moved anymore.
+> - A breathing window is set, checking for `performance_t > 2` on each frame. Giving the app 2 seconds to stabilize itself. This gets reset after a feature disable or DPR decrease/increase.
 
 ### Methods
 
