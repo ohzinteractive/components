@@ -25,3 +25,7 @@
   > Takes cool-down into account.
 
 - `is_mouse_over()`: Loops over all the elements added to the elements Set and returns true if the cursor is over said element and false if not.
+
+### Usage
+
+For a code example go to [this commit](https://github.com/ohzinteractive/boilerplate/commit/aaea9e1bf74040321dcaeae53d1920c1eb2fff75).
