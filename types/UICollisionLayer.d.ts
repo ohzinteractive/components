@@ -1,7 +1,7 @@
 import { Input } from "ohzi-core";
 import { Time } from "ohzi-core";
 
-export default class UICollisionLayer {
+export class UICollisionLayer {
     input: Input;
     time: Time;
     elements: Set<any>;

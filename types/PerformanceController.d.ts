@@ -4,7 +4,7 @@ import { Graphics } from "ohzi-core";
 import { Time } from "ohzi-core";
 import { OScreen } from "ohzi-core";
 
-export default class PerformanceController {
+export class PerformanceController {
     omath: OMath;
     configuration: Configuration;
     graphics: Graphics;
