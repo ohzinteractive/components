@@ -30,16 +30,6 @@ class Scroll
     this.current_state = undefined;
 
     this.enabled = true;
-  }
-
-  get is_scrolling()
-  {
-    return this.delta > 0 || this.delta < 0;
-  }
-
-  start()
-  {
-    // this.current = SceneController.camera_controller.reference_position.z;
 
     this.states = {
       by_steps: new BySteps(this.omath, this.os, this.time),
@@ -49,6 +39,11 @@ class Scroll
     };
 
     this.current_state = this.states.free;
+  }
+
+  get is_scrolling()
+  {
+    return this.delta > 0 || this.delta < 0;
   }
 
   enable()
