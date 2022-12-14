@@ -10,7 +10,7 @@ export class PerformanceController {
     graphics: Graphics;
     time: Time;
     oscreen: OScreen;
-    static init(omath: OMath, configuration: Configuration, graphics: Graphics, time: Time, oscreen: OScreen): void;
-    static add_optional_features(features: any): void;
-    static update(): void;
+    init(omath: OMath, configuration: Configuration, graphics: Graphics, time: Time, oscreen: OScreen): void;
+    add_optional_features(features: any): void;
+    update(): void;
 }
