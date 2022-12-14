@@ -1,9 +1,8 @@
-import BySteps from './states/BySteps';
-import ByStepsScrolling from './states/ByStepsScrolling';
-// import SceneController from './SceneController';
+import ByStepsScrollState from './states/ByStepsScrollState';
+import ByStepsScrollingScrollState from './states/ByStepsScrollingScrollState';
 
-import Free from './states/Free';
-import FreeBySteps from './states/FreeBySteps';
+import FreeScrollState from './states/FreeScrollState';
+import FreeByStepsScrollState from './states/FreeByStepsScrollState';
 
 class Scroll
 {
@@ -32,10 +31,10 @@ class Scroll
     this.enabled = true;
 
     this.states = {
-      by_steps: new BySteps(this.omath, this.os, this.time),
-      by_steps_scrolling: new ByStepsScrolling(this.omath, this.time, this.easing_functions),
-      free: new Free(this.omath, this.os),
-      free_by_steps: new FreeBySteps(this.os, this.omath, this.time)
+      by_steps: new ByStepsScrollState(this.omath, this.os, this.time),
+      by_steps_scrolling: new ByStepsScrollingScrollState(this.omath, this.time, this.easing_functions),
+      free: new FreeScrollState(this.omath, this.os),
+      free_by_steps: new FreeByStepsScrollState(this.os, this.omath, this.time)
     };
 
     this.current_state = this.states.free;

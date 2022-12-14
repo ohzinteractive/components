@@ -1,4 +1,4 @@
-export default class FreeBySteps
+export default class FreeByStepsScrollState
 {
   constructor(os, omath, time)
   {

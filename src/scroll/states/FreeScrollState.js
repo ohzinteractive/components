@@ -1,4 +1,4 @@
-export default class Free
+export default class FreeScrollState
 {
   constructor(omath, os)
   {

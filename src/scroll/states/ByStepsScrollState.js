@@ -1,4 +1,4 @@
-export default class BySteps
+export default class ByStepsScrollState
 {
   constructor(omath, os, time)
   {
