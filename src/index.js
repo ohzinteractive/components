@@ -1,6 +1,6 @@
-import PerformanceController from './PerformanceController';
-import FPSCounter from './FPSCounter';
-import UICollisionLayer from './UICollisionLayer';
+import PerformanceController from './performance_controller/PerformanceController';
+import FPSCounter from './performance_controller/FPSCounter';
+import UICollisionLayer from './ui_collision_layer/UICollisionLayer';
 import RequestManager from './request_manager/RequestManager';
 import TextScrambler from './text_scrambler/TextScrambler';
 
