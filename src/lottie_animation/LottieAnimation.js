@@ -1,10 +1,13 @@
-import * as lottie from 'lottie-web';
-
 export default class LottieAnimation
 {
-  constructor({
+  constructor()
+  {
+  }
+
+  init({
+    lottie,
     container,
-    path,
+    url,
     on_loaded = () =>
     {},
     on_complete = () =>
@@ -15,12 +18,14 @@ export default class LottieAnimation
     initial_segment
   })
   {
+    this.lottie = lottie;
+
     this.animation = lottie.loadAnimation({
       container: container,
       renderer: 'svg',
       loop: loop,
       autoplay: autoplay,
-      path: path,
+      path: url,
       rendererSettings: rendererSettings,
       initialSegment: initial_segment
     });

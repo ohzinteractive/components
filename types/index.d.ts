@@ -4,3 +4,4 @@ export * from './UICollisionLayer';
 export * from './RequestManager';
 export * from './Scroll';
 export * from './TextScrambler';
+export * from './LottieAnimation';
