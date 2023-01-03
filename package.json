@@ -1,6 +1,6 @@
 {
   "name": "ohzi-components",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "OHZI Components Library",
   "source": "src/index.js",
   "module": "build/index.module.js",
@@ -19,7 +19,8 @@
     "create-tag": "cross-var git tag -a \"v$npm_package_version\" -m \"Release Version $npm_package_version\" && cross-var git push origin \"v$npm_package_version\"",
     "update-version": "cross-var echo \"v$npm_package_version\" > .version",
     "fix-syntax": "standardx --fix",
-    "generate-types": "npx -p typescript tsc src/* --declaration --allowJs --emitDeclarationOnly --outDir types"
+    "generate-types": "npx -p typescript tsc src/* --declaration --allowJs --emitDeclarationOnly --outDir types",
+    "upload": "yarn build && npm publish && yarn create-tag"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,9 @@
     "url": "https://github.com/ohzinteractive/components/issues"
   },
   "homepage": "https://github.com/ohzinteractive/components",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "dependencies": {
   },
   "devDependencies": {
