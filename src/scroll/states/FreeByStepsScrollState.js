@@ -1,4 +1,4 @@
-export default class FreeByStepsScrollState
+class FreeByStepsScrollState
 {
   constructor(os, omath, time)
   {
@@ -119,3 +119,5 @@ export default class FreeByStepsScrollState
     return (Math.abs(scroll.current) - Math.abs(this.steps[0])) / (Math.abs(this.steps[this.steps.length - 1]) - Math.abs(this.steps[0]));
   }
 }
+
+export { FreeByStepsScrollState };

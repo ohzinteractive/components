@@ -1,4 +1,4 @@
-export default class ByStepsScrollState
+class ByStepsScrollState
 {
   constructor(omath, os, time)
   {
@@ -96,3 +96,5 @@ export default class ByStepsScrollState
     return this.current_step_index;
   }
 }
+
+export { ByStepsScrollState };

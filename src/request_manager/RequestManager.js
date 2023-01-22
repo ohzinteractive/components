@@ -93,4 +93,5 @@ class RequestManager
   }
 }
 
-export default new RequestManager();
+const request_manager = new RequestManager();
+export { request_manager as RequestManager };

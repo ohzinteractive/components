@@ -1,4 +1,4 @@
-export default class FreeScrollState
+class FreeScrollState
 {
   constructor(omath, os)
   {
@@ -74,3 +74,5 @@ export default class FreeScrollState
     return this.omath.linear_map(scroll.current, this.from, this.to, 0, 1);
   }
 }
+
+export { FreeScrollState };

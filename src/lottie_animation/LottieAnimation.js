@@ -1,4 +1,4 @@
-export default class LottieAnimation
+class LottieAnimation
 {
   constructor()
   {
@@ -36,3 +36,5 @@ export default class LottieAnimation
     return this.animation;
   }
 }
+
+export { LottieAnimation };

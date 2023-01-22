@@ -1,4 +1,4 @@
-export default class ByStepsScrollingScrollState
+class ByStepsScrollingScrollState
 {
   constructor(omath, time, easing_functions)
   {
@@ -50,3 +50,5 @@ export default class ByStepsScrollingScrollState
 
   }
 }
+
+export { ByStepsScrollingScrollState };

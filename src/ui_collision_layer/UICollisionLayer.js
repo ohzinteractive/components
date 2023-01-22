@@ -53,4 +53,5 @@ class UICollisionLayer
   }
 }
 
-export default new UICollisionLayer();
+const ui_collision_layer = new UICollisionLayer();
+export { ui_collision_layer as UICollisionLayer };

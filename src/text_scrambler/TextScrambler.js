@@ -1,5 +1,5 @@
 
-export default class TextScrambler
+class TextScrambler
 {
   constructor()
   {
@@ -85,3 +85,5 @@ export default class TextScrambler
     return this.chars[Math.floor(Math.random() * this.chars.length)];
   }
 }
+
+export { TextScrambler };

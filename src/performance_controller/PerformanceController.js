@@ -1,6 +1,6 @@
-import FPSCounter from './FPSCounter';
+import { FPSCounter } from './FPSCounter';
 
-export default class PerformanceController
+class PerformanceController
 {
   constructor()
   {
@@ -132,3 +132,5 @@ export default class PerformanceController
     }]);
   }
 }
+
+export { PerformanceController };

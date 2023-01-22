@@ -1,8 +1,8 @@
-import ByStepsScrollState from './states/ByStepsScrollState';
-import ByStepsScrollingScrollState from './states/ByStepsScrollingScrollState';
+import { ByStepsScrollState } from './states/ByStepsScrollState';
+import { ByStepsScrollingScrollState } from './states/ByStepsScrollingScrollState';
 
-import FreeScrollState from './states/FreeScrollState';
-import FreeByStepsScrollState from './states/FreeByStepsScrollState';
+import { FreeScrollState } from './states/FreeScrollState';
+import { FreeByStepsScrollState } from './states/FreeByStepsScrollState';
 
 class Scroll
 {
@@ -141,4 +141,5 @@ class Scroll
   }
 }
 
-export default new Scroll();
+const scroll = new Scroll();
+export { scroll as Scroll };
