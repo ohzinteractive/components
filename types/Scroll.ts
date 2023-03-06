@@ -19,4 +19,5 @@ export class Scroll {
     static set_free_scrolling_by_steps(steps: Array): void;
     static set_free_scrolling(from: Number, to: Number): void;
     static set_step_scrolling(steps: Array): void;
+    static update(delta_x: Number, delta_y: Number): void;
 }

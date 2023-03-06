@@ -120,10 +120,10 @@ class Scroll
     return this.current_state.get_current_step_index();
   }
 
-  update()
+  update(delta_x = this.input.pointer_pos_delta.x, delta_y = this.input.pointer_pos_delta.y)
   {
-    // this.delta = (this.os.is_mobile || this.os.is_ipad) ? this.input.pointer_pos_delta.y * 0.03 : this.input.scroll_delta;
-    const delta_mobile = this.input.pointer_pos_delta.x * 0.02 + -this.input.pointer_pos_delta.y * 0.02;
+    // this.delta = (this.os.is_mobile || this.os.is_ipad) ? delta_y * 0.03 : this.input.scroll_delta;
+    const delta_mobile = delta_x * 0.02 + -delta_y * 0.02;
     let delta_desktop = this.input.scroll_delta;
 
     if (this.input.left_mouse_button_down)
