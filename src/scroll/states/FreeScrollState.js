@@ -4,12 +4,19 @@ class FreeScrollState
   {
     this.omath = omath;
     this.os = os;
+
+    this.sensitivity = 0.2;
   }
 
   set_from_to(from = -999, to = 999)
   {
     this.from = from;
     this.to = to;
+  }
+
+  set_sensitivity(sensitivity)
+  {
+    this.sensitivity = sensitivity;
   }
 
   on_enter(scroll)
@@ -21,7 +28,7 @@ class FreeScrollState
   {
     if (scroll.enabled)
     {
-      scroll.target += scroll.delta;
+      scroll.target += scroll.delta * this.sensitivity;
 
       if (Math.abs(scroll.delta) > 0)
       {
