@@ -55,23 +55,35 @@ class Scroll
     this.enabled = false;
   }
 
-  set_free_scrolling_by_steps(steps)
+  set_free_scrolling_by_steps(steps, reset = true)
   {
-    this.reset(steps[0]);
+    if (reset)
+    {
+      this.reset(steps[0]);
+    }
+
     this.states.free_by_steps.set_steps(steps);
     this.set_state(this.states.free_by_steps);
   }
 
-  set_free_scrolling(from, to)
+  set_free_scrolling(from, to, reset = true)
   {
-    this.reset(from);
+    if (reset)
+    {
+      this.reset(from);
+    }
+
     this.states.free.set_from_to(from, to);
     this.set_state(this.states.free);
   }
 
-  set_step_scrolling(steps)
+  set_step_scrolling(steps, reset = true)
   {
-    this.reset(steps[0]);
+    if (reset)
+    {
+      this.reset(steps[0]);
+    }
+
     this.states.by_steps.set_steps(steps);
     this.set_state(this.states.by_steps);
   }
