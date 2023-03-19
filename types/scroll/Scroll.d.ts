@@ -23,9 +23,9 @@ declare class Scroll {
     get is_scrolling(): boolean;
     enable(): void;
     disable(): void;
-    set_free_scrolling_by_steps(steps: any): void;
-    set_free_scrolling(from: any, to: any): void;
-    set_step_scrolling(steps: any): void;
+    set_free_scrolling_by_steps(steps: any, reset?: boolean): void;
+    set_free_scrolling(from: any, to: any, reset?: boolean): void;
+    set_step_scrolling(steps: any, reset?: boolean): void;
     set_state(new_state: any): void;
     scroll_forward(): void;
     scroll_backward(): void;
@@ -34,13 +34,12 @@ declare class Scroll {
     get_progress(): any;
     get_current_step(): any;
     get_current_step_index(): any;
-    update(): void;
+    update(delta_x?: any, delta_y?: any): void;
 }
 import { ByStepsScrollState } from "./states/ByStepsScrollState";
 import { ByStepsScrollingScrollState } from "./states/ByStepsScrollingScrollState";
 import { FreeScrollState } from "./states/FreeScrollState";
 import { FreeByStepsScrollState } from "./states/FreeByStepsScrollState";
-
 import { Input } from "ohzi-core";
 import { OS } from "ohzi-core";
 import { OMath } from "ohzi-core";
