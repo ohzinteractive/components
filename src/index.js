@@ -4,6 +4,7 @@ import { PerformanceController } from './performance_controller/PerformanceContr
 import { RequestManager } from './request_manager/RequestManager';
 import { TextScrambler } from './text_scrambler/TextScrambler';
 import { UICollisionLayer } from './ui_collision_layer/UICollisionLayer';
+import { AudioManager } from './audio/AudioManager';
 
 import { Scroll } from './scroll/Scroll';
 import { ByStepsScrollState } from './scroll/states/ByStepsScrollState';
@@ -18,6 +19,7 @@ export {
   RequestManager,
   TextScrambler,
   UICollisionLayer,
+  AudioManager,
 
   Scroll,
   ByStepsScrollState,
