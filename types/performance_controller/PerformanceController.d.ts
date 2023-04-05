@@ -1,5 +1,5 @@
 export class PerformanceController {
-    init(omath: typeof OMath, configuration: typeof Configuration, graphics: typeof Graphics, time: typeof Time, oscreen: typeof OScreen): void;
+    init(omath: typeof OMath, configuration: typeof Configuration, graphics: typeof Graphics, time: typeof Time, oscreen: typeof OScreen, fps_counter: FPSCounter): void;
     omath: typeof OMath;
     configuration: typeof Configuration;
     graphics:typeof Graphics;
@@ -24,3 +24,4 @@ import { Configuration } from "ohzi-core";
 import { Graphics } from "ohzi-core";
 import { Time } from "ohzi-core";
 import { OScreen } from "ohzi-core";
+import { FPSCounter } from '../performance_controller/FPSCounter'

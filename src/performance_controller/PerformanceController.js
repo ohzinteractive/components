@@ -1,18 +1,17 @@
-import { FPSCounter } from './FPSCounter';
-
 class PerformanceController
 {
   constructor()
   {
   }
 
-  init(omath, configuration, graphics, time, oscreen)
+  init(omath, configuration, graphics, time, oscreen, fps_counter)
   {
     this.omath = omath;
     this.configuration = configuration;
     this.graphics = graphics;
     this.time = time;
     this.oscreen = oscreen;
+    this.fps_counter = fps_counter;
 
     this.should_check_performance = true;
     this.performance_t = 0;
@@ -49,7 +48,7 @@ class PerformanceController
   {
     if (this.should_check_performance)
     {
-      FPSCounter.update();
+      this.fps_counter.update();
 
       this.__check_performance();
     }
@@ -59,18 +58,18 @@ class PerformanceController
   {
     if (this.performance_t > 2)
     {
-      if (FPSCounter.avg < 30)
+      if (this.fps_counter.avg < 30)
       {
         this.__reduce_dpr();
       }
-      else if (FPSCounter.avg >= 60)
+      else if (this.fps_counter.avg >= 60)
       {
         if (!this.threshold)
         {
           this.__increase_dpr();
         }
       }
-      else if (FPSCounter.avg < 60)
+      else if (this.fps_counter.avg < 60)
       {
         if (!this.threshold)
         {
@@ -99,8 +98,8 @@ class PerformanceController
       this.configuration.dpr = this.omath.clamp(this.configuration.dpr, 0.75, window.devicePixelRatio * 1.25);
     }
 
-    // console.log('reduce', FPSCounter.avg,  FPSCounter.fps_samples);
-    FPSCounter.reset();
+    // console.log('reduce', this.fps_counter.avg,  this.fps_counter.fps_samples);
+    this.fps_counter.reset();
     this.performance_t = 0;
 
     this.graphics.on_resize([{
@@ -118,8 +117,8 @@ class PerformanceController
     this.configuration.dpr += 0.25;
     this.configuration.dpr = this.omath.clamp(this.configuration.dpr, 1, window.devicePixelRatio * 1.25);
 
-    // console.log('increase', FPSCounter.avg,  FPSCounter.fps_samples);
-    // FPSCounter.reset();
+    // console.log('increase', this.fps_counter.avg,  this.fps_counter.fps_samples);
+    // this.fps_counter.reset();
     this.performance_t = 0;
 
     this.graphics.on_resize([{
