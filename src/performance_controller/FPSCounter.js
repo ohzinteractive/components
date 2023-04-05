@@ -54,6 +54,14 @@ class FPSCounter
 
     return fpss / this.fps_samples.length;
   }
+
+  reset()
+  {
+    this.count = 1;
+    this.fps = 60;
+
+    this.fps_samples = [60, 60, 60, 60, 60];
+  }
 }
 
 const fps_counter = new FPSCounter();
