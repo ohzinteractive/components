@@ -39,7 +39,7 @@ class ModalCreator
       to: new_import
     };
 
-    const new_section = `__MODAL_STATES__\n      ${name.toLowerCase()}: new ${this.capitalize(name)}ModalState('${name}'),`;
+    const new_section = `__MODAL_STATES__\n      ${name.toLowerCase()}: new ${this.capitalize(name)}ModalState('${name.replace(/_/g, '-')}'),`;
 
     const options_2 = {
       files: file_path,
@@ -259,12 +259,7 @@ class ModalCreator
 
   snake_to_camelcase(string)
   {
-    return string.replace(
-      /([-_][a-z])/g,
-      (group) => group.toUpperCase()
-        .replace('-', '')
-        .replace('_', '')
-    );
+    return string.toLowerCase().replace(/[-_][a-z0-9]/g, (group) => group.slice(-1).toUpperCase());
   }
 }
 
