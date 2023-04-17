@@ -1,8 +1,8 @@
 export { scroll as Scroll };
 declare const scroll: Scroll;
 declare class Scroll {
-    init(input: typeof Input, os: typeof OS, omath: typeof OMath, time: typeof Time, easing_functions: typeof EasingFunctions): void;
-    input: typeof Input;
+    init(input: any, os: typeof OS, omath: typeof OMath, time: typeof Time, easing_functions: typeof EasingFunctions): void;
+    input: any;
     os: typeof OS;
     omath: typeof OMath;
     time: typeof Time;
@@ -40,7 +40,6 @@ import { ByStepsScrollState } from "./states/ByStepsScrollState";
 import { ByStepsScrollingScrollState } from "./states/ByStepsScrollingScrollState";
 import { FreeScrollState } from "./states/FreeScrollState";
 import { FreeByStepsScrollState } from "./states/FreeByStepsScrollState";
-import { Input } from "ohzi-core";
 import { OS } from "ohzi-core";
 import { OMath } from "ohzi-core";
 import { Time } from "ohzi-core";

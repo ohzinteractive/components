@@ -28,7 +28,7 @@ class UICollisionLayer
 
   update()
   {
-    // Input.over_ui = !this.is_mouse_over();
+    // this.input.over_ui = !this.is_mouse_over();
     this.mouse_out_cooldown -= this.time.delta_time;
 
     if (this.is_mouse_over())

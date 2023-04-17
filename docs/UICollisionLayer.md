@@ -14,7 +14,7 @@
 
 - `init(input, time)`: Initialize component.
 
-  Expects [Input](https://github.com/ohzinteractive/core/blob/main/src/Input.js) and [Time](https://github.com/ohzinteractive/core/blob/main/src/Time.js) elements from `ohzi-core`
+  Expects Input (from Boilerplate) and [Time](https://github.com/ohzinteractive/core/blob/main/src/Time.js) elements from `ohzi-core`
 
 - `add_element(elem)`: Adds an element to the elements Set that will be looped on `is_mouse_over` function.
 
