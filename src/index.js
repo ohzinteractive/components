@@ -12,6 +12,9 @@ import { ByStepsScrollingScrollState } from './scroll/states/ByStepsScrollingScr
 import { FreeScrollState } from './scroll/states/FreeScrollState';
 import { FreeByStepsScrollState } from './scroll/states/FreeByStepsScrollState';
 
+import { ModalState } from './modal/states/ModalState';
+import { AbstractModalComponent } from './modal/AbstractModalComponent';
+
 export {
   FPSCounter,
   LottieAnimation,
@@ -25,5 +28,8 @@ export {
   ByStepsScrollState,
   ByStepsScrollingScrollState,
   FreeScrollState,
-  FreeByStepsScrollState
+  FreeByStepsScrollState,
+
+  ModalState,
+  AbstractModalComponent
 };
