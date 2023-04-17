@@ -61,7 +61,7 @@ class ModalCreator
 
   __update_modal_pug_file(name)
   {
-    const new_data = `__MODAL_STATES__\n    include states/${name}`;
+    const new_data = `__MODAL_STATES__\n  include states/${name}`;
     const file_path = path.join('..', 'app', 'views', 'components', 'modal', 'modal.pug');
 
     const options = {
