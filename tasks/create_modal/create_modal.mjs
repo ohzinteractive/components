@@ -83,12 +83,12 @@ class ModalCreator
 
   __update_application_scss_file(name)
   {
-    const new_data = `__COMPONENTS__\n@import 'components/modal/${name}/${name}';`;
+    const new_data = `__MODAL_STATES__\n@import 'components/modal/${name}/${name}';`;
     const file_path = path.join('..', 'app', 'css', 'application.scss');
 
     const options = {
       files: file_path,
-      from: '__COMPONENTS__',
+      from: '__MODAL_STATES__',
       to: new_data
     };
 
