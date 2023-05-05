@@ -66,11 +66,14 @@ class AbstractModalComponent
     }
   }
 
-  show_state(state_name)
+  show_state(state_name, collision = true)
   {
     if (this.hidden)
     {
-      this.ui_collision_layer.add_element(this.container);
+      if (collision)
+      {
+        this.ui_collision_layer.add_element(this.container);
+      }
 
       this.set_state(this.states[state_name]);
       this.on_enter();
