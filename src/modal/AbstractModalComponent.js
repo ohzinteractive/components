@@ -10,6 +10,7 @@ class AbstractModalComponent
   {
     this.name = 'modal';
     this.container = document.querySelector('.modal');
+    this.animation = document.querySelector('.modal__animation');
     this.hidden = true;
 
     this.ui_collision_layer = ui_collision_layer;
@@ -33,6 +34,7 @@ class AbstractModalComponent
   on_enter()
   {
     this.container.classList.remove('hidden');
+    this.animation.classList.remove('hidden');
     this.hidden = false;
 
     this.load_html_images();
@@ -41,6 +43,7 @@ class AbstractModalComponent
   on_exit()
   {
     this.container.classList.add('hidden');
+    this.animation.classList.add('hidden');
     this.hidden = true;
   }
 

@@ -1,6 +1,6 @@
 {
   "name": "ohzi-components",
-  "version": "2.4.6",
+  "version": "2.5.0",
   "description": "OHZI Components Library",
   "source": "src/index.js",
   "module": "build/index.module.js",
@@ -41,6 +41,11 @@
     "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
+  },
+  "standardx": {
+    "ignore": [
+      "rollup.config.js"
+    ]
   },
   "devDependencies": {
     "cross-var": "^1.1.0",
