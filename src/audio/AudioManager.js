@@ -35,6 +35,7 @@ class AudioManager
     this.muting = false;
     this.muting_t = 0;
     this.muting_dir = 1;
+    this.muted_by_user = false;
 
     this.listener = undefined;
     this.user_interaction = false;
@@ -54,23 +55,29 @@ class AudioManager
   {
     window.addEventListener('blur', () =>
     {
-      this.mute();
+      this.mute(false);
     });
+
     window.addEventListener('focus', () =>
     {
-      this.unmute();
+      if (!this.muted_by_user)
+      {
+        this.unmute();
+      }
     });
 
     document.addEventListener('visibilitychange', () =>
     {
       if (document.visibilityState === 'visible')
       {
-        this.unmute();
+        if (!this.muted_by_user)
+        {
+          this.unmute();
+        }
       }
       else
       {
-        this.listener.setMasterVolume(0);
-        this.mute();
+        this.mute(false);
       }
     });
   }
@@ -174,13 +181,14 @@ class AudioManager
     }
   }
 
-  mute()
+  mute(muted_by_user = true)
   {
     if (!this.muted)
     {
       // this.listener.setMasterVolume(0);
-
       this.muted = true;
+      this.muted_by_user = muted_by_user;
+
       this.muting = true;
       this.muting_t = this.max_volume;
       this.muting_dir = -1;
