@@ -23,6 +23,7 @@ class AbstractModalComponent
     this.current_state = new AbstractModalState('abstract');
 
     this.next_state_name = undefined;
+    this.next_state_collision = true;
     this.next_state_t = 0;
   }
 
@@ -62,7 +63,7 @@ class AbstractModalComponent
         if (this.next_state_t > 0.25)
         {
           this.next_state_t = 0;
-          this.show_state(this.next_state_name);
+          this.show_state(this.next_state_name, this.next_state_collision);
           this.next_state_name = undefined;
         }
       }
@@ -83,11 +84,11 @@ class AbstractModalComponent
     }
     else
     {
-      this.hide(state_name);
+      this.hide(state_name, collision);
     }
   }
 
-  hide(next_state_name)
+  hide(next_state_name, next_state_collision = true)
   {
     this.ui_collision_layer.remove_element(this.container);
 
@@ -95,6 +96,7 @@ class AbstractModalComponent
 
     this.last_state = undefined;
     this.next_state_name = next_state_name;
+    this.next_state_collision = next_state_collision;
   }
 
   // Used on a close button when a nested modal is opened
