@@ -255,6 +255,21 @@ class AudioManager
     }
   }
 
+  stop_all_sounds(except_sound_names = [])
+  {
+    const sound_names = Object.keys(this.sounds);
+
+    for (let i = 0; i < sound_names.length; i++)
+    {
+      const sound_name = sound_names[i];
+
+      if (!except_sound_names.includes(sound_name))
+      {
+        this.stop(sound_name);
+      }
+    }
+  }
+
   stop_all_loop_sounds(except_sound_names = [])
   {
     for (let i = 0; i < this.loop_sounds.length; i++)
