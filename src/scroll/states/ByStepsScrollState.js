@@ -23,13 +23,13 @@ class ByStepsScrollState
 
   update(scroll)
   {
-    const sensitivity = this.os.is_mobile ? 0.3 : this.os.is_ipad ? 0.5 : 0;
+    const sensitivity = this.os.is_mobile ? 0.3 : this.os.is_ipad ? 0.5 : this.os.is_mac ? 0.1 : 0;
 
     if (scroll.enabled)
     {
       if (scroll.delta > sensitivity)
       {
-        if (scroll.can_scroll_forward())
+        if (this.can_scroll_forward())
         {
           this.scroll_forward(scroll);
         }
@@ -37,7 +37,7 @@ class ByStepsScrollState
 
       if (scroll.delta < -sensitivity)
       {
-        if (scroll.can_scroll_backward())
+        if (this.can_scroll_backward())
         {
           this.scroll_backward(scroll);
         }
@@ -53,8 +53,9 @@ class ByStepsScrollState
     this.current_step_index++;
     scroll.current_cooldown = scroll.default_cooldown;
 
-    scroll.states.by_steps_scrolling.set_to(scroll.steps[scroll.current_step_index]);
-    scroll.set_state(this.states.by_steps_scrolling);
+    scroll.states.by_steps_scrolling.set_to(this.steps[this.current_step_index]);
+
+    scroll.set_state(scroll.states.by_steps_scrolling);
   }
 
   scroll_backward(scroll)
@@ -62,8 +63,9 @@ class ByStepsScrollState
     this.current_step_index--;
     scroll.current_cooldown = scroll.default_cooldown;
 
-    scroll.states.by_steps_scrolling.set_to(scroll.steps[scroll.current_step_index]);
-    scroll.set_state(this.states.by_steps_scrolling);
+    scroll.states.by_steps_scrolling.set_to(this.steps[this.current_step_index]);
+
+    scroll.set_state(scroll.states.by_steps_scrolling);
   }
 
   on_exit(scroll)

@@ -7,6 +7,9 @@ class ByStepsScrollingScrollState
     this.easing_functions = easing_functions;
 
     this.name = 'scrolling';
+
+    this.from = 0;
+    this.to = 0;
   }
 
   set_to(to)

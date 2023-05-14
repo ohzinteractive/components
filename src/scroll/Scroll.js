@@ -68,24 +68,24 @@ class Scroll
 
   set_free_scrolling(from, to, reset = true)
   {
+    this.states.free.set_from_to(from, to);
+    this.set_state(this.states.free);
+
     if (reset)
     {
       this.reset(from);
     }
-
-    this.states.free.set_from_to(from, to);
-    this.set_state(this.states.free);
   }
 
   set_step_scrolling(steps, reset = true)
   {
+    this.states.by_steps.set_steps(steps);
+    this.set_state(this.states.by_steps);
+
     if (reset)
     {
       this.reset(steps[0]);
     }
-
-    this.states.by_steps.set_steps(steps);
-    this.set_state(this.states.by_steps);
   }
 
   set_state(new_state)
@@ -149,7 +149,7 @@ class Scroll
 
     this.current_state.update(this);
 
-    this.enabled = this.input.enabled;
+    // this.enabled = this.input.enabled;
   }
 }
 
