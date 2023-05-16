@@ -53,6 +53,17 @@ class RequestManager
     });
   }
 
+  put(url, data, callback, error_callback)
+  {
+    this.__request({
+      url: url,
+      method: 'PUT',
+      data,
+      callback,
+      error_callback
+    });
+  }
+
   __request({ url, method, data, callback = this.on_callback.bind(this), error_callback = this.on_error.bind(this) })
   {
     this.callbacks[url] = callback;
