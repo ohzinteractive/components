@@ -90,25 +90,25 @@ class AudioManager
     {
       const sound_name = sound_names[i];
 
-      if (!this.sounds[sound_name])
+      // if (!this.sounds[sound_name])
+      // {
+      this.sounds[sound_name] = this.resourse_container.get(sound_name);
+
+      this.sounds[sound_name].init(this.listener);
+
+      if (this.sounds[sound_name].loop)
       {
-        this.sounds[sound_name] = this.resourse_container.get(sound_name);
+        this.audio_mufflers[sound_name] = new AudioMuffler(
+          sound_name,
+          this.sounds[sound_name],
+          this.time,
+          this.omath,
+          this.easing_functions
+        );
 
-        this.sounds[sound_name].init(this.listener);
-
-        if (this.sounds[sound_name].loop)
-        {
-          this.audio_mufflers[sound_name] = new AudioMuffler(
-            sound_name,
-            this.sounds[sound_name],
-            this.time,
-            this.omath,
-            this.easing_functions
-          );
-
-          this.loop_sounds.push(sound_name);
-        }
+        this.loop_sounds.push(sound_name);
       }
+      // }
     }
 
     this.audio_mufflers_keys = Object.keys(this.audio_mufflers);
