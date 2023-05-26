@@ -38,7 +38,7 @@ class AbstractModalComponent
     this.animation.classList.remove('hidden');
     this.hidden = false;
 
-    this.load_html_images();
+    // this.load_html_images();
   }
 
   on_exit()
@@ -124,15 +124,15 @@ class AbstractModalComponent
     this.current_state.on_enter(this);
   }
 
-  load_html_images()
-  {
-    this.html_utilities.load_images(this.container);
-  }
+  // load_html_images()
+  // {
+  //   this.html_utilities.load_images(this.container);
+  // }
 
-  load_html_videos()
-  {
-    this.html_utilities.load_videos(this.container);
-  }
+  // load_html_videos()
+  // {
+  //   this.html_utilities.load_videos(this.container);
+  // }
 }
 
 export { AbstractModalComponent };
