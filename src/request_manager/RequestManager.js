@@ -64,7 +64,7 @@ class RequestManager
     });
   }
 
-  __request({ url, method, data, callback = this.on_callback.bind(this), error_callback = this.on_error.bind(this) })
+  __request({ url, headers, method, data, with_data, callback = this.on_callback.bind(this), error_callback = this.on_error.bind(this) })
   {
     this.callbacks[url] = callback;
     this.error_callbacks[url] = error_callback;
@@ -72,8 +72,10 @@ class RequestManager
     this.worker.postMessage({
       type: 'request',
       url: url,
+      headers: headers,
       method: method,
-      data: data
+      data: data,
+      with_data: with_data
     });
   }
 
