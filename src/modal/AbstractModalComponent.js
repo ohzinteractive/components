@@ -50,11 +50,9 @@ class AbstractModalComponent
 
   update(current_state_data)
   {
-    if (!this.hidden)
-    {
-      this.current_state.update(this);
-    }
-    else
+    this.current_state.update(this);
+
+    if (this.hidden)
     {
       if (this.next_state_name)
       {
