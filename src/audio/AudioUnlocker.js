@@ -25,6 +25,15 @@ class AudioUnlocker
       return;
     }
 
+    // Fix audio lost on safari
+    context.onstatechange = function()
+    {
+      if (context.state === 'suspended' || context.state === 'interrupted')
+      {
+        context.resume();
+      }
+    };
+
     // create empty buffer and play it
     const buffer = context.createBuffer(1, 1, 22050);
     const source = context.createBufferSource();
