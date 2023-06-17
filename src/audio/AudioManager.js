@@ -33,8 +33,10 @@ class AudioManager
 
     this.muted = true;
     this.muting = false;
-    this.muting_t = 0;
-    this.muting_dir = 1;
+
+    // this.muting_t = 0;
+    // this.muting_dir = 1;
+
     this.muted_by_user = false;
 
     this.listener = undefined;
@@ -185,13 +187,13 @@ class AudioManager
   {
     if (!this.muted)
     {
-      // this.listener.setMasterVolume(0);
       this.muted = true;
+      this.listener.setMasterVolume(0);
       this.muted_by_user = muted_by_user;
 
-      this.muting = true;
-      this.muting_t = this.max_volume;
-      this.muting_dir = -1;
+      // this.muting = true;
+      // this.muting_t = this.max_volume;
+      // this.muting_dir = -1;
     }
   }
 
@@ -200,9 +202,15 @@ class AudioManager
     if (this.muted)
     {
       this.muted = false;
-      this.muting = true;
-      this.muting_t = 0;
-      this.muting_dir = 1;
+
+      if (this.listener)
+      {
+        this.listener.setMasterVolume(this.max_volume);
+      }
+
+      // this.muting = true;
+      // this.muting_t = 0;
+      // this.muting_dir = 1;
     }
   }
 
@@ -214,21 +222,21 @@ class AudioManager
       audio_muffler.update();
     }
 
-    if (this.muting)
-    {
-      this.muting_t += this.time.delta_time * this.muting_dir;
-      this.muting_t = this.omath.clamp(this.muting_t, 0, this.max_volume);
+    // if (this.muting)
+    // {
+    //   this.muting_t += this.time.delta_time * this.muting_dir;
+    //   this.muting_t = this.omath.clamp(this.muting_t, 0, this.max_volume);
 
-      if (this.listener)
-      {
-        this.listener.setMasterVolume(this.muting_t);
-      }
+    //   if (this.listener)
+    //   {
+    //     this.listener.setMasterVolume(this.muting_t);
+    //   }
 
-      if (this.muting_t === 0 || this.muting_t === this.max_volume)
-      {
-        this.muting = false;
-      }
-    }
+    //   if (this.muting_t === 0 || this.muting_t === this.max_volume)
+    //   {
+    //     this.muting = false;
+    //   }
+    // }
 
     if (!this.initialized)
     {
