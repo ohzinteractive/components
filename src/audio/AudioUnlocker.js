@@ -14,41 +14,52 @@ class AudioUnlocker
     {
       window.addEventListener('touchstart', this.unlock_bind, false);
     }
+
+    const context = this.AudioContext.getContext();
+
+    // Fix audio lost on safari
+    context.onstatechange = (e) =>
+    {
+      console.log(context.state);
+      if (context.state === 'suspended' || context.state === 'interrupted')
+      {
+        context.resume();
+        context.createGain();
+      }
+    };
   }
 
   unlock()
   {
-    const context = this.AudioContext.getContext();
-
     if (this.is_unlocked)
     {
       return;
     }
 
-    // Fix audio lost on safari
-    context.onstatechange = function()
+    const context = this.AudioContext.getContext();
+
+    if (context.state !== 'running')
     {
-      if (context.state === 'suspended' || context.state === 'interrupted')
-      {
-        context.resume();
-      }
-    };
+      console.log(context.state);
+      context.resume();
+      context.createGain();
 
-    // create empty buffer and play it
-    const buffer = context.createBuffer(1, 1, 22050);
-    const source = context.createBufferSource();
+      // create empty buffer and play it
+      const buffer = context.createBuffer(1, 1, 22050);
+      const source = context.createBufferSource();
 
-    source.buffer = buffer;
-    source.connect(context.destination);
-    source.start();
+      source.buffer = buffer;
+      source.connect(context.destination);
+      source.start();
+    }
 
     // by checking the play state after some time, we know if we're really unlocked
-    setTimeout(this.remove_listeners.bind(this, source), 0);
+    setTimeout(this.remove_listeners.bind(this, context), 10);
   }
 
-  remove_listeners(source)
+  remove_listeners(context)
   {
-    if ((source.playbackState === source.PLAYING_STATE || source.playbackState === source.FINISHED_STATE))
+    if (context.state === 'running')
     {
       this.is_unlocked = true;
 
