@@ -10,7 +10,7 @@ class AudioUnlocker
 
     window.addEventListener('click', this.unlock_bind, false);
 
-    if (this.os.is_mobile)
+    if (this.os.is_mobile || this.os.is_ipad)
     {
       window.addEventListener('touchstart', this.unlock_bind, false);
     }
