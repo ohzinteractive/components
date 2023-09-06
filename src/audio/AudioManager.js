@@ -122,8 +122,14 @@ class AudioManager
     }
   }
 
-  play(sound_names)
+  play(sound_names_array)
   {
+    let sound_names = sound_names_array;
+
+    if (Array.isArray(sound_names_array) === false)
+    {
+      sound_names = [sound_names_array];
+    }
     // console.log('play sound: ', sound_names);
     for (let i = 0; i < sound_names.length; i++)
     {
