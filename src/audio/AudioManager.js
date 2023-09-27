@@ -34,6 +34,8 @@ class AudioManager
     this.muted = true;
     this.muting = false;
 
+    this.paused_sounds = [];
+
     // this.muting_t = 0;
     // this.muting_dir = 1;
 
@@ -175,6 +177,27 @@ class AudioManager
           }
         }
       }
+    }
+  }
+
+  pause(sound_name)
+  {
+    if (this.sounds[sound_name])
+    {
+      if (this.sounds[sound_name].is_playing)
+      {
+        this.sounds[sound_name].pause();
+        this.paused_sounds.push(this.sounds[sound_name]);
+      }
+    }
+  }
+
+  unpause_sounds()
+  {
+    for (let i = 0; i < this.paused_sounds.length; i++)
+    {
+      const paused_sound = this.paused_sounds[i];
+      paused_sound.play();
     }
   }
 
