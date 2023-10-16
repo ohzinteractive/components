@@ -6,7 +6,7 @@ class AbstractModalComponent
   {
   }
 
-  init(ui_collision_layer, html_utilities, time)
+  init(ui_collision_layer, time)
   {
     this.name = 'modal';
     this.container = document.querySelector('.modal');
@@ -14,7 +14,6 @@ class AbstractModalComponent
     this.hidden = true;
 
     this.ui_collision_layer = ui_collision_layer;
-    this.html_utilities = html_utilities;
     this.time = time;
 
     this.states = {};
@@ -37,8 +36,6 @@ class AbstractModalComponent
     this.container.classList.remove('hidden');
     this.animation.classList.remove('hidden');
     this.hidden = false;
-
-    // this.load_html_images();
   }
 
   on_exit()
@@ -121,16 +118,6 @@ class AbstractModalComponent
     this.current_state = state;
     this.current_state.on_enter(this);
   }
-
-  // load_html_images()
-  // {
-  //   this.html_utilities.load_images(this.container);
-  // }
-
-  // load_html_videos()
-  // {
-  //   this.html_utilities.load_videos(this.container);
-  // }
 }
 
 export { AbstractModalComponent };
