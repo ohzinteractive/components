@@ -75,7 +75,6 @@ class AudioMuffler
       : 1 - Math.pow(-2 * x + 2, 3) / 2;
   }
 
-
   linear_map(value,
     from_range_start_value,
     from_range_end_value,

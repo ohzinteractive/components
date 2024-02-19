@@ -44,7 +44,7 @@ class AudioManager
 
     // this.setup_sounds_names(sounds);
 
-    this.audio_events = new AudioEvents(this)
+    this.audio_events = new AudioEvents(this);
     this.audio_events.init();
   }
 
@@ -114,13 +114,13 @@ class AudioManager
           sound.play();
         }
 
-      // TODO: move outside of this class
-      // if (sound.positional)
-      // {
-      //   this.camera_manager.current.add(this.listener);
-      // }
+        // TODO: move outside of this class
+        // if (sound.positional)
+        // {
+        //   this.camera_manager.current.add(this.listener);
+        // }
 
-      // this.sounds[sound].audio.isPlaying = false;
+        // this.sounds[sound].audio.isPlaying = false;
 
       // if (this.listener.context.state === 'running')
       // {
@@ -137,8 +137,10 @@ class AudioManager
           {
             this.sounds_to_play.push(sound_name);
           }
-        } else {
-          console.warn("Sound not found:", sound_name)
+        }
+        else
+        {
+          console.warn('Sound not found:', sound_name);
         }
       }
     }

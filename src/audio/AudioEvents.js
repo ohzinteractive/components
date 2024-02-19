@@ -1,40 +1,37 @@
 export class AudioEvents
 {
-    constructor(audio_manager)
+  constructor(audio_manager)
+  {
+    this.audio_manager = audio_manager;
+  }
+
+  init()
+  {
+    this.bind_focus_events();
+  }
+
+  bind_focus_events()
+  {
+    window.addEventListener('blur', () =>
     {
-      this.audio_manager = audio_manager;
+      this.audio_manager.on_blur();
+    });
 
-    }
-
-    init()
+    window.addEventListener('focus', () =>
     {
-      this.bind_focus_events();
-    }
+      this.audio_manager.on_focus();
+    });
 
-    bind_focus_events()
+    document.addEventListener('visibilitychange', () =>
     {
-      window.addEventListener('blur', () =>
-      {
-
-        this.audio_manager.on_blur();
-      });
-
-      window.addEventListener('focus', () =>
+      if (document.visibilityState === 'visible')
       {
         this.audio_manager.on_focus();
-
-      });
-
-      document.addEventListener('visibilitychange', () =>
+      }
+      else
       {
-        if (document.visibilityState === 'visible')
-        {
-          this.audio_manager.on_focus();
-        }
-        else
-        {
-          this.audio_manager.on_blur();
-        }
-      });
-    }
+        this.audio_manager.on_blur();
+      }
+    });
+  }
 }
