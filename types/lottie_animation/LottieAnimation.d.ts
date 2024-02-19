@@ -1,7 +1,7 @@
 export class LottieAnimation {
     init({ lottie, container, url, on_loaded, on_complete, loop, autoplay, rendererSettings, initial_segment }: {
         lottie: any;
-        container: HTMLElement;
+        container: any;
         url: any;
         on_loaded?: () => void;
         on_complete?: () => void;

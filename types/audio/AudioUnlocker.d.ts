@@ -5,5 +5,5 @@ export class AudioUnlocker {
     is_unlocked: boolean;
     unlock_bind: any;
     unlock(): void;
-    remove_listeners(source: any): void;
+    remove_listeners(context: any): void;
 }

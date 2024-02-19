@@ -4,11 +4,11 @@ export class ByStepsScrollingScrollState {
     time: any;
     easing_functions: any;
     name: string;
+    from: number;
+    to: number;
     set_to(to: any): void;
-    to: any;
     on_enter(scroll: any): void;
     t: any;
-    from: any;
     update(scroll: any): void;
     on_exit(scroll: any): void;
     scroll_forward(scroll: any): void;

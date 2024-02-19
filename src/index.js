@@ -1,35 +1,25 @@
-import { FPSCounter } from './performance_controller/FPSCounter';
+import { AudioManager } from './audio/AudioManager';
+import { AudioUnlocker } from './audio/AudioUnlocker';
 import { LottieAnimation } from './lottie_animation/LottieAnimation';
+import { FPSCounter } from './performance_controller/FPSCounter';
 import { PerformanceController } from './performance_controller/PerformanceController';
 import { RequestManager } from './request_manager/RequestManager';
 import { TextScrambler } from './text_scrambler/TextScrambler';
 import { UICollisionLayer } from './ui_collision_layer/UICollisionLayer';
-import { AudioManager } from './audio/AudioManager';
 
 import { Scroll } from './scroll/Scroll';
 import { ByStepsScrollState } from './scroll/states/ByStepsScrollState';
 import { ByStepsScrollingScrollState } from './scroll/states/ByStepsScrollingScrollState';
-import { FreeScrollState } from './scroll/states/FreeScrollState';
 import { FreeByStepsScrollState } from './scroll/states/FreeByStepsScrollState';
+import { FreeScrollState } from './scroll/states/FreeScrollState';
 
-import { ModalState } from './modal/states/ModalState';
 import { AbstractModalComponent } from './modal/AbstractModalComponent';
+import { ModalState } from './modal/states/ModalState';
 
 export {
-  FPSCounter,
-  LottieAnimation,
-  PerformanceController,
-  RequestManager,
-  TextScrambler,
-  UICollisionLayer,
-  AudioManager,
-
-  Scroll,
-  ByStepsScrollState,
-  ByStepsScrollingScrollState,
-  FreeScrollState,
-  FreeByStepsScrollState,
-
-  ModalState,
-  AbstractModalComponent
+  AbstractModalComponent, AudioManager, AudioUnlocker, ByStepsScrollState,
+  ByStepsScrollingScrollState, FPSCounter, FreeByStepsScrollState, FreeScrollState, LottieAnimation, ModalState, PerformanceController,
+  RequestManager, Scroll, TextScrambler,
+  UICollisionLayer
 };
+

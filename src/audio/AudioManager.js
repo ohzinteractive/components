@@ -1,19 +1,13 @@
+import { AudioEvents } from './AudioEvents';
 import { AudioMuffler } from './AudioMuffler';
-import { AudioUnlocker } from './AudioUnlocker';
 
 class AudioManager
 {
-  init(audio_listener_klass, audio_context_klass, camera_manager,
-    resourse_container, time, omath, os, easing_functions)
+  init(audio_listener_klass, resourse_container, time)
   {
     this.AudioListener = audio_listener_klass;
-    this.AudioContext = audio_context_klass;
-    this.camera_manager = camera_manager;
     this.resourse_container = resourse_container;
     this.time = time;
-    this.omath = omath;
-    this.os = os;
-    this.easing_functions = easing_functions;
 
     this.initialized = false;
     this.max_volume = 0.9;
@@ -42,7 +36,7 @@ class AudioManager
     this.muted_by_user = false;
 
     this.listener = undefined;
-    this.user_interaction = false;
+    // this.user_interaction = false;
 
     // let sounds = [];
     // sounds = sounds.concat(test_general_sounds);
@@ -50,40 +44,8 @@ class AudioManager
 
     // this.setup_sounds_names(sounds);
 
-    this.audio_unlocker = new AudioUnlocker(this.os, this.AudioContext);
-
-    this.bind_focus_events();
-  }
-
-  bind_focus_events()
-  {
-    window.addEventListener('blur', () =>
-    {
-      this.mute(false);
-    });
-
-    window.addEventListener('focus', () =>
-    {
-      if (!this.muted_by_user)
-      {
-        this.unmute();
-      }
-    });
-
-    document.addEventListener('visibilitychange', () =>
-    {
-      if (document.visibilityState === 'visible')
-      {
-        if (!this.muted_by_user)
-        {
-          this.unmute();
-        }
-      }
-      else
-      {
-        this.mute(false);
-      }
-    });
+    this.audio_events = new AudioEvents(this)
+    this.audio_events.init();
   }
 
   init_sounds(scene_sounds_data)
@@ -97,7 +59,6 @@ class AudioManager
       // if (!this.sounds[sound_name])
       // {
       this.sounds[sound_name] = this.resourse_container.get(sound_name);
-
       this.sounds[sound_name].init(this.listener);
 
       if (this.sounds[sound_name].loop)
@@ -105,9 +66,7 @@ class AudioManager
         this.audio_mufflers[sound_name] = new AudioMuffler(
           sound_name,
           this.sounds[sound_name],
-          this.time,
-          this.omath,
-          this.easing_functions
+          this.time
         );
 
         this.loop_sounds.push(sound_name);
@@ -117,7 +76,7 @@ class AudioManager
 
     this.audio_mufflers_keys = Object.keys(this.audio_mufflers);
 
-    if (this.sounds_to_play)
+    if (this.sounds_to_play.length > 0)
     {
       this.play([...this.sounds_to_play]);
       this.sounds_to_play = [];
@@ -132,7 +91,7 @@ class AudioManager
     {
       sound_names = [sound_names_array];
     }
-    // console.log('play sound: ', sound_names);
+
     for (let i = 0; i < sound_names.length; i++)
     {
       const sound_name = sound_names[i];
@@ -155,12 +114,13 @@ class AudioManager
           sound.play();
         }
 
-        if (sound.positional)
-        {
-          this.camera_manager.current.add(this.listener);
-        }
+      // TODO: move outside of this class
+      // if (sound.positional)
+      // {
+      //   this.camera_manager.current.add(this.listener);
+      // }
 
-        // this.sounds[sound].audio.isPlaying = false;
+      // this.sounds[sound].audio.isPlaying = false;
 
       // if (this.listener.context.state === 'running')
       // {
@@ -169,12 +129,16 @@ class AudioManager
       }
       else
       {
-        if (sound_name)
+        const sound_names_keys = Object.keys(this.sounds_names);
+
+        if (sound_names_keys.includes(sound_name.toUpperCase()))
         {
-          if (!this.sounds_to_play.includes(sound_name) && sound_name !== this.sounds_names.CUBE_TRANSITION)
+          if (!this.sounds_to_play.includes(sound_name))
           {
             this.sounds_to_play.push(sound_name);
           }
+        } else {
+          console.warn("Sound not found:", sound_name)
         }
       }
     }
@@ -243,6 +207,19 @@ class AudioManager
     }
   }
 
+  on_blur()
+  {
+    this.mute(false);
+  }
+
+  on_focus()
+  {
+    if (!this.muted_by_user)
+    {
+      this.unmute();
+    }
+  }
+
   update()
   {
     for (let i = 0; i < this.audio_mufflers_keys.length; i++)
@@ -269,16 +246,11 @@ class AudioManager
 
     if (!this.initialized)
     {
-      // if (Input.left_mouse_button_pressed || this.user_interaction)
-      // {
-      this.user_interaction = true;
       this.listener = new this.AudioListener();
       this.listener.setMasterVolume(0);
       // this.mute();
 
-      window.user_interaction_for_audio = true;
       this.initialized = true;
-      // }
     }
     else
     {
