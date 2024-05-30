@@ -34,14 +34,14 @@ class AbstractModalComponent
   on_enter()
   {
     this.container.classList.remove('hidden');
-    this.animation.classList.remove('hidden');
+    // this.animation.classList.remove('hidden');
     this.hidden = false;
   }
 
   on_exit()
   {
     this.container.classList.add('hidden');
-    this.animation.classList.add('hidden');
+    // this.animation.classList.add('hidden');
     this.hidden = true;
   }
 

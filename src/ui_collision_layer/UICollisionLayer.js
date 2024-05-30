@@ -17,6 +17,8 @@ class UICollisionLayer
 
     this.mutation_observer = new MutationObserver(this.on_element_mutated.bind(this));
     this.mutation_observer_config = { attributes: true, childList: false, subtree: false };
+
+    this.resize_observer = new ResizeObserver(this.on_element_resized.bind(this));
   }
 
   add_element(elem)
@@ -24,6 +26,7 @@ class UICollisionLayer
     this.elements.add(elem);
 
     this.mutation_observer.observe(elem, this.mutation_observer_config);
+    this.resize_observer.observe(elem);
 
     elem.rect = elem.getBoundingClientRect();
   }
@@ -60,7 +63,7 @@ class UICollisionLayer
     {
       if (mutation.type === 'attributes')
       {
-        if (mutation.attributeName === 'style')
+        if (mutation.attributeName === 'style' || mutation.attributeName === 'class')
         {
           const element = mutation.target;
           const rect = element.getBoundingClientRect();
@@ -68,6 +71,17 @@ class UICollisionLayer
           element.rect = rect;
         }
       }
+    }
+  }
+
+  on_element_resized(entries)
+  {
+    for (const entry of entries)
+    {
+      const element = entry.target;
+      const rect = element.getBoundingClientRect();
+
+      element.rect = rect;
     }
   }
 
