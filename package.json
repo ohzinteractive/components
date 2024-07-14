@@ -1,9 +1,9 @@
 {
   "name": "ohzi-components",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "description": "OHZI Components Library",
   "source": "src/index.js",
-  "module": "build/index.module.js",
+  "module": "build/index.module.mjs",
   "types": "types/index.d.ts",
   "files": [
     "build",
@@ -13,6 +13,7 @@
     "package.json"
   ],
   "scripts": {
+    "start": "rollup -w -c",
     "build": "rollup -c",
     "preinstall": "yarn config-hooks",
     "config-hooks": "git config core.hooksPath git_hooks",
