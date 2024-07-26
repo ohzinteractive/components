@@ -1,7 +1,7 @@
 export class PerformanceController {
-    init(omath: typeof OMath, configuration: typeof Configuration, graphics: typeof Graphics, time: typeof Time, oscreen: typeof OScreen, fps_counter: FPSCounter): void;
+    init(omath: typeof OMath, settings: typeof Settings, graphics: typeof Graphics, time: typeof Time, oscreen: typeof OScreen, fps_counter: FPSCounter): void;
     omath: typeof OMath;
-    configuration: typeof Configuration;
+    settings: typeof settings;
     graphics:typeof Graphics;
     time: typeof Time;
     oscreen: typeof OScreen;
@@ -19,9 +19,5 @@ export class PerformanceController {
     __increase_dpr(): void;
 }
 
-import { OMath } from "ohzi-core";
-import { Configuration } from "ohzi-core";
-import { Graphics } from "ohzi-core";
-import { Time } from "ohzi-core";
-import { OScreen } from "ohzi-core";
-import { FPSCounter } from '../performance_controller/FPSCounter'
+import { Graphics, OMath, OScreen, Settings, Time } from "ohzi-core";
+

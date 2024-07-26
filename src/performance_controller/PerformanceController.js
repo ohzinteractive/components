@@ -4,10 +4,10 @@ class PerformanceController
   {
   }
 
-  init(omath, configuration, graphics, time, oscreen, fps_counter)
+  init(omath, settings, graphics, time, oscreen, fps_counter)
   {
     this.omath = omath;
-    this.configuration = configuration;
+    this.settings = settings;
     this.graphics = graphics;
     this.time = time;
     this.oscreen = oscreen;
@@ -73,7 +73,7 @@ class PerformanceController
       {
         if (!this.threshold)
         {
-          if (this.configuration.dpr > 1)
+          if (this.settings.dpr > 1)
           {
             this.__reduce_dpr(true);
             this.threshold = true;
@@ -94,8 +94,8 @@ class PerformanceController
     }
     else
     {
-      this.configuration.dpr -= 0.25;
-      this.configuration.dpr = this.omath.clamp(this.configuration.dpr, 0.75, window.devicePixelRatio * 1.25);
+      this.settings.dpr -= 0.25;
+      this.settings.dpr = this.omath.clamp(this.settings.dpr, 0.75, window.devicePixelRatio * 1.25);
     }
 
     // console.log('reduce', this.fps_counter.avg,  this.fps_counter.fps_samples);
@@ -114,8 +114,8 @@ class PerformanceController
 
   __increase_dpr()
   {
-    this.configuration.dpr += 0.25;
-    this.configuration.dpr = this.omath.clamp(this.configuration.dpr, 1, window.devicePixelRatio * 1.25);
+    this.settings.dpr += 0.25;
+    this.settings.dpr = this.omath.clamp(this.settings.dpr, 1, window.devicePixelRatio * 1.25);
 
     // console.log('increase', this.fps_counter.avg,  this.fps_counter.fps_samples);
     // this.fps_counter.reset();

@@ -30,7 +30,7 @@ On every frame:
   >
   > - [Omath](https://github.com/ohzinteractive/core/blob/main/src/utilities/OMath.js)
   >
-  > - [Configuration](https://github.com/ohzinteractive/core/blob/main/src/Configuration.js)
+  > - [Settings](https://github.com/ohzinteractive/core/blob/main/src/Settings.js)
   >
   > - [Graphics](https://github.com/ohzinteractive/core/blob/main/src/Graphics.js)
   >
