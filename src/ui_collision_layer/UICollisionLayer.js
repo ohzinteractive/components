@@ -101,7 +101,7 @@ class UICollisionLayer
   pointer_is_over_element(elem)
   {
     const rect = elem.rect;
-    const pos = this.main_input.html_pointer_pos;
+    const pos = this.main_input.pointer_pos;
 
     return  pos.x > rect.left &&
             pos.x < rect.left + rect.width &&
