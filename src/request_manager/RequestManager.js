@@ -64,6 +64,17 @@ class RequestManager
     });
   }
 
+  delete(url, data, callback, error_callback)
+  {
+    this.__request({
+      url: url,
+      method: 'DELETE',
+      data,
+      callback,
+      error_callback
+    });
+  }
+
   __request({ url, headers, method, data, with_data, callback = this.on_callback.bind(this), error_callback = this.on_error.bind(this) })
   {
     this.callbacks[url] = callback;
