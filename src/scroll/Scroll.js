@@ -1,8 +1,8 @@
 import { ByStepsScrollState } from './states/ByStepsScrollState';
 import { ByStepsScrollingScrollState } from './states/ByStepsScrollingScrollState';
 
-import { FreeScrollState } from './states/FreeScrollState';
 import { FreeByStepsScrollState } from './states/FreeByStepsScrollState';
+import { FreeScrollState } from './states/FreeScrollState';
 
 class Scroll
 {
@@ -25,6 +25,8 @@ class Scroll
 
     this.duration = 1;
     this.default_cooldown = 1.4;
+
+    this.framerate = 60;
 
     this.current_state = undefined;
 
