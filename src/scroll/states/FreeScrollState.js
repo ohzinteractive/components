@@ -6,6 +6,7 @@ class FreeScrollState
     this.os = os;
 
     this.sensitivity = 0.2;
+    this.force = 0.2;
   }
 
   set_from_to(from = -999, to = 999)
@@ -36,12 +37,10 @@ class FreeScrollState
       }
     }
 
-    const force = this.os.is_mobile ? 0.1 : this.os.is_ipad ? 0.08 : this.os.is_mac ? 0.2 : 0.05;
-
     scroll.target = this.omath.clamp(scroll.target, this.from, this.to);
 
     const deltaTime = scroll.time.delta_time;
-    const rate = force / scroll.duration;
+    const rate = this.force / scroll.duration;
 
     // Framerate independent lerp calculation
     // Using exponential decay: new_value = target + (current - target) * exp(-rate * deltaTime)
