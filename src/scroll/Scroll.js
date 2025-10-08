@@ -44,7 +44,7 @@ class Scroll
 
   get is_scrolling()
   {
-    return this.delta > 0 || this.delta < 0;
+    return Math.abs(this.current - this.target) > 0.01;
   }
 
   enable()
