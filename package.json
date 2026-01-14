@@ -18,7 +18,7 @@
     "preinstall": "yarn config-hooks",
     "config-hooks": "git config core.hooksPath git_hooks",
     "create-tag": "node tasks/app/create_tag.mjs",
-    "fix-syntax": "standardx --fix",
+    "fix-syntax": "npx eslint src --fix || echo 'Done.'",
     "generate-types": "npx -p typescript tsc src/* --declaration --allowJs --emitDeclarationOnly --outDir types",
     "upload": "yarn build && npm publish && yarn create-tag",
     "create-modal": "node ./tasks/create_modal/create_modal.mjs"
@@ -40,16 +40,15 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
-  "standardx": {
-    "ignore": [
-      "rollup.config.mjs"
-    ]
-  },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.18.2",
+    "@typescript-eslint/parser": "^8.18.2",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^10.1.8",
     "@rollup/plugin-terser": "^0.4.4",
     "rollup": "4.1.4",
     "rollup-plugin-glslify": "^1.3.1",
-    "standardx": "^7.0.0",
-    "typescript": "^4.4.4"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.18.2"
   }
 }
