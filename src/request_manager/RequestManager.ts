@@ -1,6 +1,10 @@
-
 class RequestManager
 {
+  browser: any;
+  callbacks: any;
+  error_callbacks: any;
+  worker: any;
+  
   constructor()
   {
     this.callbacks = {};
@@ -10,14 +14,14 @@ class RequestManager
     this.worker = undefined;
   }
 
-  init(browser)
+  init(browser: any)
   {
     this.browser = browser;
     this.worker = this.__create_worker();
     this.__setup_worker();
   }
 
-  on_message(e)
+  on_message(e: any)
   {
     const message = e.data;
     // console.log('ON MESSAGE', message, this.callbacks);
@@ -32,7 +36,7 @@ class RequestManager
     }
   }
 
-  get(url, callback, error_callback)
+  get(url: any, callback: any, error_callback: any)
   {
     this.__request({
       url: url,
@@ -42,7 +46,7 @@ class RequestManager
     });
   }
 
-  post(url, data, callback, error_callback)
+  post(url: any, data: any, callback: any, error_callback: any)
   {
     this.__request({
       url: url,
@@ -53,7 +57,7 @@ class RequestManager
     });
   }
 
-  put(url, data, callback, error_callback)
+  put(url: any, data: any, callback: any, error_callback: any)
   {
     this.__request({
       url: url,
@@ -64,7 +68,7 @@ class RequestManager
     });
   }
 
-  delete(url, data, callback, error_callback)
+  delete(url: any, data: any, callback: any, error_callback: any)
   {
     this.__request({
       url: url,
@@ -75,7 +79,15 @@ class RequestManager
     });
   }
 
-  __request({ url, headers, method, data, with_data, callback = this.on_callback.bind(this), error_callback = this.on_error.bind(this) })
+  __request({
+    url,
+    headers,
+    method,
+    data,
+    with_data,
+    callback = this.on_callback.bind(this),
+    error_callback = this.on_error.bind(this)
+  }: any)
   {
     this.callbacks[url] = callback;
     this.error_callbacks[url] = error_callback;
@@ -90,12 +102,12 @@ class RequestManager
     });
   }
 
-  on_callback(e)
+  on_callback(e: any)
   {
     console.warn('Request not handlered', e);
   }
 
-  on_error(e)
+  on_error(e: any)
   {
     console.error('Error not handlered', e);
   }

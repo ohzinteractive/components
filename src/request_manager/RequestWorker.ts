@@ -1,6 +1,8 @@
-
 class RequestWorker
 {
+  is_safari: any;
+  response: any;
+  
   run()
   {
     this.response = undefined;
@@ -30,7 +32,7 @@ class RequestWorker
     });
   }
 
-  request(url, external_headers = {}, method, data, with_data = true)
+  request(url: any, external_headers = {}, method: any, data: any, with_data = true)
   {
     const cache = this.is_safari ? 'no-cache' : 'default';
     // console.log(this.is_safari, url, method, data);
@@ -57,7 +59,7 @@ class RequestWorker
       .catch(this.on_error.bind(this, url));
   }
 
-  async on_response(url, response)
+  async on_response(url: any, response: any)
   {
     const body = await response.text();
 
@@ -69,7 +71,7 @@ class RequestWorker
     });
   }
 
-  async on_quick_response(url, response)
+  async on_quick_response(url: any, response: any)
   {
     postMessage({
       type: 'response',
@@ -78,7 +80,7 @@ class RequestWorker
     });
   }
 
-  async on_error(url, response)
+  async on_error(url: any, response: any)
   {
     console.warn(url, response);
 
@@ -105,7 +107,7 @@ class RequestWorker
     });
   }
 
-  check_response(response)
+  check_response(response: any)
   {
     if (Math.floor(response.status / 100) === 4)
     {
@@ -115,7 +117,7 @@ class RequestWorker
     return response;
   }
 
-  text_to_json(text)
+  text_to_json(text: any)
   {
     if (this.__is_json(text))
     {
@@ -127,7 +129,7 @@ class RequestWorker
     }
   }
 
-  __response_to_blob(response)
+  __response_to_blob(response: any)
   {
     return response.blob();
   }
@@ -137,7 +139,7 @@ class RequestWorker
     console.error(data);
   }
 
-  __is_json(str)
+  __is_json(str: any)
   {
     try
     {

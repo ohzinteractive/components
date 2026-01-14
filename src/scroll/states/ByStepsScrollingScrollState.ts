@@ -1,6 +1,14 @@
 class ByStepsScrollingScrollState
 {
-  constructor(omath, time, easing_functions)
+  easing_functions: any;
+  from: any;
+  name: any;
+  omath: any;
+  t: any;
+  time: any;
+  to: any;
+  
+  constructor(omath: any, time: any, easing_functions: any)
   {
     this.omath = omath;
     this.time = time;
@@ -12,19 +20,19 @@ class ByStepsScrollingScrollState
     this.to = 0;
   }
 
-  set_to(to)
+  set_to(to: any)
   {
     this.to = to;
   }
 
-  on_enter(scroll)
+  on_enter(scroll: any)
   {
     this.t = 0;
 
     this.from = scroll.current;
   }
 
-  update(scroll)
+  update(scroll: any)
   {
     this.t += this.time.delta_time / scroll.duration;
 
@@ -38,17 +46,17 @@ class ByStepsScrollingScrollState
     }
   }
 
-  on_exit(scroll)
+  on_exit(scroll: any)
   {
 
   }
 
-  scroll_forward(scroll)
+  scroll_forward(scroll: any)
   {
 
   }
 
-  scroll_backward(scroll)
+  scroll_backward(scroll: any)
   {
 
   }

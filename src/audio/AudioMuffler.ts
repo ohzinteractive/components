@@ -1,7 +1,14 @@
-
 class AudioMuffler
 {
-  constructor(sound_name, sound, time)
+  changing: any;
+  dir: any;
+  sound: any;
+  sound_name: any;
+  speed: any;
+  t: any;
+  time: any;
+  
+  constructor(sound_name: any, sound: any, time: any)
   {
     this.time = time;
 
@@ -63,23 +70,23 @@ class AudioMuffler
     }
   }
 
-  clamp(value, min, max)
+  clamp(value: any, min: any, max: any)
   {
     return Math.max(min, Math.min(max, value));
   }
 
-  ease_in_out_cubic(x)
+  ease_in_out_cubic(x: any)
   {
     return x < 0.5
       ? 4 * x * x * x
       : 1 - Math.pow(-2 * x + 2, 3) / 2;
   }
 
-  linear_map(value,
-    from_range_start_value,
-    from_range_end_value,
-    to_range_start_value,
-    to_range_end_value)
+  linear_map(value: any,
+    from_range_start_value: any,
+    from_range_end_value: any,
+    to_range_start_value: any,
+    to_range_end_value: any)
   {
     return ((value - from_range_start_value) / (from_range_end_value - from_range_start_value)) * (to_range_end_value - to_range_start_value) + to_range_start_value;
   }

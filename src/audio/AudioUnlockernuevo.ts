@@ -1,6 +1,9 @@
 class AudioUnlocker
 {
-  constructor(os, audio_context, worker_to_main)
+  AudioContext: any;
+  os: any;
+  worker_to_main: any;
+  constructor(os: any, audio_context: any, worker_to_main: any)
   {
     this.os = os;
     this.AudioContext = audio_context;
@@ -9,8 +12,7 @@ class AudioUnlocker
     const context = this.AudioContext.getContext();
 
     // Fix audio lost on safari
-    context.onstatechange = (e) =>
-    {
+    context.onstatechange = (e: any) => {
       console.log(context.state);
       if (context.state === 'suspended' || context.state === 'interrupted')
       {

@@ -1,6 +1,9 @@
+import type { AudioManager } from './AudioManager.js';
 export class AudioEvents
 {
-  constructor(audio_manager)
+  audio_manager: typeof AudioManager;
+  
+  constructor(audio_manager: typeof AudioManager)
   {
     this.audio_manager = audio_manager;
   }

@@ -3,7 +3,26 @@ import { AudioMuffler } from './AudioMuffler';
 
 class AudioManager
 {
-  init(audio_listener_klass, resourse_container, time)
+  AudioListener: any;
+  audio_events: any;
+  audio_mufflers: any;
+  audio_mufflers_keys: any;
+  first_time_unmute: any;
+  initialized: any;
+  listener: any;
+  loop_sounds: any;
+  max_volume: any;
+  muted: any;
+  muted_by_user: any;
+  muting: any;
+  paused_sounds: any;
+  resourse_container: any;
+  sounds: any;
+  sounds_names: any;
+  sounds_to_play: any;
+  time: any;
+  
+  init(audio_listener_klass: any, resourse_container: any, time: any)
   {
     this.AudioListener = audio_listener_klass;
     this.resourse_container = resourse_container;
@@ -48,7 +67,7 @@ class AudioManager
     this.audio_events.init();
   }
 
-  init_sounds(scene_sounds_data)
+  init_sounds(scene_sounds_data: any)
   {
     const sound_names = this.get_sounds_names(scene_sounds_data);
 
@@ -83,7 +102,7 @@ class AudioManager
     }
   }
 
-  play(sound_names_array)
+  play(sound_names_array: any)
   {
     let sound_names = sound_names_array;
 
@@ -146,7 +165,7 @@ class AudioManager
     }
   }
 
-  pause(sound_name)
+  pause(sound_name: any)
   {
     if (this.sounds[sound_name])
     {
@@ -167,7 +186,7 @@ class AudioManager
     }
   }
 
-  stop(sound_name)
+  stop(sound_name: any)
   {
     if (this.sounds[sound_name])
     {
@@ -266,6 +285,7 @@ class AudioManager
     }
   }
 
+  // @ts-expect-error TS(7006): Parameter 'except_sound_names' implicitly has an '... Remove this comment to see the full error message
   stop_all_sounds(except_sound_names = [])
   {
     const sound_names = Object.keys(this.sounds);
@@ -281,6 +301,7 @@ class AudioManager
     }
   }
 
+  // @ts-expect-error TS(7006): Parameter 'except_sound_names' implicitly has an '... Remove this comment to see the full error message
   stop_all_loop_sounds(except_sound_names = [])
   {
     for (let i = 0; i < this.loop_sounds.length; i++)
@@ -294,7 +315,7 @@ class AudioManager
     }
   }
 
-  setup_sounds_names(sounds)
+  setup_sounds_names(sounds: any)
   {
     for (let i = 0; i < sounds.length; i++)
     {
@@ -304,7 +325,7 @@ class AudioManager
     }
   }
 
-  get_sounds_names(sounds)
+  get_sounds_names(sounds: any)
   {
     const sounds_names = [];
 

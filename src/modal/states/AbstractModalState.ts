@@ -1,7 +1,8 @@
-
 class AbstractModalState
 {
-  constructor(name)
+  name: any;
+  
+  constructor(name: any)
   {
     this.name = name;
   }

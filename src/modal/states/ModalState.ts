@@ -2,7 +2,9 @@ import { AbstractModalState } from './AbstractModalState';
 
 class ModalState extends AbstractModalState
 {
-  constructor(name)
+  container: any;
+  
+  constructor(name: any)
   {
     super(name);
 

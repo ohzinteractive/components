@@ -1,6 +1,12 @@
-
 class TextScrambler
 {
+  chars: any;
+  el: any;
+  frame: any;
+  is_enabled: any;
+  queue: any;
+  time: any;
+  
   constructor()
   {
   }
@@ -15,7 +21,7 @@ class TextScrambler
     this.time = 10;
   }
 
-  set_text(element, new_text)
+  set_text(element: any, new_text: any)
   {
     const old_text = element.innerText;
     const length = Math.max(old_text.length, new_text.length);

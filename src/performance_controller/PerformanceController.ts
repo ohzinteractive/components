@@ -1,10 +1,22 @@
 class PerformanceController
 {
+  current_optional_feature_i: any;
+  fps_counter: any;
+  graphics: any;
+  omath: any;
+  optional_features: any;
+  oscreen: any;
+  performance_t: any;
+  settings: any;
+  should_check_performance: any;
+  threshold: any;
+  time: any;
+  
   constructor()
   {
   }
 
-  init(omath, settings, graphics, time, oscreen, fps_counter)
+  init(omath: any, settings: any, graphics: any, time: any, oscreen: any, fps_counter: any)
   {
     this.omath = omath;
     this.settings = settings;
@@ -35,7 +47,7 @@ class PerformanceController
     this.should_check_performance = false;
   }
 
-  add_optional_features(features)
+  add_optional_features(features: any)
   {
     for (let i = 0; i < features.length; i++)
     {

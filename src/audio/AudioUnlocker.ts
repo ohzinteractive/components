@@ -1,6 +1,11 @@
 class AudioUnlocker
 {
-  constructor(os, audio_context)
+  AudioContext: any;
+  is_unlocked: any;
+  os: any;
+  unlock_bind: any;
+  
+  constructor(os: any, audio_context: any)
   {
     this.os = os;
     this.AudioContext = audio_context;
@@ -18,8 +23,7 @@ class AudioUnlocker
     const context = this.AudioContext.getContext();
 
     // Fix audio lost on safari
-    context.onstatechange = (e) =>
-    {
+    context.onstatechange = (e: any) => {
       if (context.state === 'suspended' || context.state === 'interrupted')
       {
         context.resume();
@@ -56,7 +60,7 @@ class AudioUnlocker
     setTimeout(this.remove_listeners.bind(this, context), 10);
   }
 
-  remove_listeners(context)
+  remove_listeners(context: any)
   {
     if (context.state === 'running')
     {

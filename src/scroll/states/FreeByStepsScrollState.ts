@@ -1,6 +1,16 @@
 class FreeByStepsScrollState
 {
-  constructor(os, omath, time)
+  current_step: any;
+  omath: any;
+  os: any;
+  snap_speed: any;
+  speed: any;
+  steps: any;
+  threshold: any;
+  time: any;
+  velocity: any;
+  
+  constructor(os: any, omath: any, time: any)
   {
     this.os = os;
     this.omath = omath;
@@ -18,17 +28,17 @@ class FreeByStepsScrollState
     this.threshold = 0.05;
   }
 
-  set_steps(steps)
+  set_steps(steps: any)
   {
     this.steps = steps;
   }
 
-  on_enter(scroll)
+  on_enter(scroll: any)
   {
     this.current_step = 0;
   }
 
-  find_nearest_step(x, dir)
+  find_nearest_step(x: any, dir: any)
   {
     // const min_distance = 99999;
     // const min_step = -1;
@@ -62,7 +72,7 @@ class FreeByStepsScrollState
     return this.steps[0];
   }
 
-  update(scroll)
+  update(scroll: any)
   {
     this.velocity += scroll.delta * this.speed;
 
@@ -87,12 +97,12 @@ class FreeByStepsScrollState
     this.velocity *= 0.9;
   }
 
-  on_exit(scroll)
+  on_exit(scroll: any)
   {
 
   }
 
-  scroll_forward(scroll)
+  scroll_forward(scroll: any)
   {
     // const step = this.find_nearest_step(scroll.current, 1);
 
@@ -100,7 +110,7 @@ class FreeByStepsScrollState
     // this.update(scroll);
   }
 
-  scroll_backward(scroll)
+  scroll_backward(scroll: any)
   {
     // const step = this.find_nearest_step(scroll.current, 1);
 
@@ -108,13 +118,13 @@ class FreeByStepsScrollState
     // this.update(scroll);
   }
 
-  scroll_to(scroll, target)
+  scroll_to(scroll: any, target: any)
   {
     console.warn('implement');
     // scroll.target = target;
   }
 
-  get_progress(scroll)
+  get_progress(scroll: any)
   {
     return (Math.abs(scroll.current) - Math.abs(this.steps[0])) / (Math.abs(this.steps[this.steps.length - 1]) - Math.abs(this.steps[0]));
   }

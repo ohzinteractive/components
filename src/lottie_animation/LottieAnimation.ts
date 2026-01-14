@@ -1,5 +1,8 @@
 class LottieAnimation
 {
+  animation: any;
+  lottie: any;
+  
   constructor()
   {
   }
@@ -8,15 +11,18 @@ class LottieAnimation
     lottie,
     container,
     url,
+
     on_loaded = () =>
     {},
+
     on_complete = () =>
     {},
+
     loop = false,
     autoplay = false,
     rendererSettings = {},
     initial_segment
-  })
+  }: any)
   {
     this.lottie = lottie;
 

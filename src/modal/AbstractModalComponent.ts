@@ -2,11 +2,24 @@ import { AbstractModalState } from './states/AbstractModalState';
 
 class AbstractModalComponent
 {
+  animation: any;
+  container: any;
+  current_state: any;
+  hidden: any;
+  last_state: any;
+  name: any;
+  next_state_collision: any;
+  next_state_name: any;
+  next_state_t: any;
+  states: any;
+  time: any;
+  ui_collision_layer: any;
+  
   constructor()
   {
   }
 
-  init(ui_collision_layer, time)
+  init(ui_collision_layer: any, time: any)
   {
     this.name = 'modal';
     this.container = document.querySelector('.modal');
@@ -45,7 +58,7 @@ class AbstractModalComponent
     this.hidden = true;
   }
 
-  update(current_state_data)
+  update(current_state_data: any)
   {
     this.current_state.update(this);
 
@@ -65,7 +78,7 @@ class AbstractModalComponent
     }
   }
 
-  show_state(state_name, collision = true)
+  show_state(state_name: any, collision = true)
   {
     if (this.hidden)
     {
@@ -83,7 +96,7 @@ class AbstractModalComponent
     }
   }
 
-  hide(next_state_name, next_state_collision = true)
+  hide(next_state_name: any, next_state_collision = true)
   {
     this.ui_collision_layer.remove_element(this.container);
 
@@ -103,11 +116,12 @@ class AbstractModalComponent
     }
     else
     {
+      // @ts-expect-error TS(2554): Expected 1-2 arguments, but got 0.
       this.hide();
     }
   }
 
-  set_state(state)
+  set_state(state: any)
   {
     if (!this.hidden)
     {

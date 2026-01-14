@@ -1,11 +1,18 @@
-
 class UICollisionLayer
 {
+  elements: any;
+  main_input: any;
+  mouse_out_cooldown: any;
+  mutation_observer: any;
+  mutation_observer_config: any;
+  resize_observer: any;
+  time: any;
+  
   constructor()
   {
   }
 
-  init(main_input, time)
+  init(main_input: any, time: any)
   {
     this.main_input = main_input;
     this.time = time;
@@ -21,7 +28,7 @@ class UICollisionLayer
     this.resize_observer = new ResizeObserver(this.on_element_resized.bind(this));
   }
 
-  add_element(elem)
+  add_element(elem: any)
   {
     this.elements.add(elem);
 
@@ -31,7 +38,7 @@ class UICollisionLayer
     elem.rect = elem.getBoundingClientRect();
   }
 
-  remove_element(elem)
+  remove_element(elem: any)
   {
     this.mutation_observer.disconnect();
 
@@ -57,7 +64,7 @@ class UICollisionLayer
     this.main_input.over_ui = this.mouse_out_cooldown > 0;
   }
 
-  on_element_mutated(mutationList, observer)
+  on_element_mutated(mutationList: any, observer: any)
   {
     for (const mutation of mutationList)
     {
@@ -74,7 +81,7 @@ class UICollisionLayer
     }
   }
 
-  on_element_resized(entries)
+  on_element_resized(entries: any)
   {
     for (const entry of entries)
     {
@@ -98,7 +105,7 @@ class UICollisionLayer
     return false;
   }
 
-  pointer_is_over_element(elem)
+  pointer_is_over_element(elem: any)
   {
     const rect = elem.rect;
     const pos = this.main_input.pointer_pos;

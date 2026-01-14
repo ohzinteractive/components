@@ -1,11 +1,17 @@
-
 class FPSCounter
 {
+  count: any;
+  fps: any;
+  fps_samples: any;
+  last_loop: any;
+  time: any;
+  total: any;
+
   constructor()
   {
   }
 
-  init(time)
+  init(time: any)
   {
     this.time = time;
 
