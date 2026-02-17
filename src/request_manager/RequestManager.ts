@@ -115,7 +115,7 @@ class RequestManager
   __create_worker()
   {
     const worker = new Worker(
-      new URL('./RequestWorker.js', import.meta.url),
+      new URL('./RequestWorker.ts', import.meta.url),
       { name: 'OHZI - RequestManager', type: 'module' });
 
     return worker;

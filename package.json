@@ -1,6 +1,6 @@
 {
   "name": "ohzi-components",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "OHZI Components Library",
   "source": "src/index.ts",
   "module": "build/index.module.mjs",
