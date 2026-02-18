@@ -1,17 +1,23 @@
-export class FreeScrollState {
-    constructor(omath: any, os: any);
-    omath: any;
-    os: any;
-    sensitivity: number;
-    set_from_to(from?: number, to?: number): void;
+import type { OMath } from "../../lib/OMath";
+import type { OS } from "../../lib/OS";
+import type { Scroll } from "../Scroll";
+import { ScrollState } from "./ScrollState";
+declare class FreeScrollState extends ScrollState {
+    force: number;
     from: number;
+    omath: OMath;
+    os: OS;
+    sensitivity: number;
     to: number;
-    set_sensitivity(sensitivity: any): void;
-    on_enter(scroll: any): void;
-    update(scroll: any): void;
-    on_exit(scroll: any): void;
-    scroll_forward(scroll: any): void;
-    scroll_backward(scroll: any): void;
-    scroll_to(scroll: any, target: any): void;
-    get_progress(scroll: any): any;
+    constructor(omath: OMath, os: OS);
+    set_from_to(from?: number, to?: number): void;
+    set_sensitivity(sensitivity: number): void;
+    on_enter(scroll: typeof Scroll): void;
+    update(scroll: typeof Scroll): void;
+    on_exit(scroll: typeof Scroll): void;
+    scroll_forward(scroll: typeof Scroll): void;
+    scroll_backward(scroll: typeof Scroll): void;
+    scroll_to(scroll: typeof Scroll, target: number): void;
+    get_progress(scroll: typeof Scroll): number;
 }
+export { FreeScrollState };

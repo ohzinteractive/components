@@ -1,16 +1,17 @@
-export { fps_counter as FPSCounter };
-declare const fps_counter: FPSCounter;
+import type { Time } from "../lib/Time";
 declare class FPSCounter {
-    init(time: any): void;
-    time: typeof Time;
-    last_loop: any;
     count: number;
-    total: number;
     fps: number;
     fps_samples: number[];
+    last_loop: number | undefined;
+    time: Time;
+    total: number;
+    constructor();
+    init(time: Time): void;
     update(): void;
     count_fps(): void;
     get avg(): number;
+    reset(): void;
 }
-
-import { Time } from "ohzi-core";
+declare const fps_counter: FPSCounter;
+export { fps_counter as FPSCounter };

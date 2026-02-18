@@ -1,7 +1,9 @@
-export class AbstractModalState {
-    constructor(name: any);
-    name: any;
-    on_enter(): void;
-    on_exit(): void;
-    update(): void;
+import type { AbstractModalComponent } from "../AbstractModalComponent";
+declare class AbstractModalState {
+    name: string;
+    constructor(name: string);
+    on_enter(modal_component: AbstractModalComponent): void;
+    on_exit(modal_component: AbstractModalComponent): void;
+    update(modal_component: AbstractModalComponent): void;
 }
+export { AbstractModalState };

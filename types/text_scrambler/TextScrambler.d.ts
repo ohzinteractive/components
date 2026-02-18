@@ -1,12 +1,20 @@
-export class TextScrambler {
-    init(): void;
-    el: any;
+declare class TextScrambler {
     chars: string;
-    is_enabled: boolean;
-    time: number;
-    set_text(element: any, new_text: any): void;
-    queue: any[];
+    el: HTMLElement;
     frame: number;
+    is_enabled: boolean;
+    queue: {
+        from: string;
+        to: string;
+        start: number;
+        end: number;
+        char?: string;
+    }[];
+    time: number;
+    constructor();
+    init(): void;
+    set_text(element: HTMLElement, new_text: string): void;
     update(): void;
     __random_char(): string;
 }
+export { TextScrambler };
