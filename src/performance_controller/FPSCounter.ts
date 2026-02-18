@@ -1,17 +1,19 @@
+import type { Time } from "../lib/Time";
+
 class FPSCounter
 {
-  count: any;
-  fps: any;
-  fps_samples: any;
-  last_loop: any;
-  time: any;
-  total: any;
+  count: number;
+  fps: number;
+  fps_samples: number[];
+  last_loop: number | undefined;
+  time: Time;
+  total: number;
 
   constructor()
   {
   }
 
-  init(time: any)
+  init(time: Time)
   {
     this.time = time;
 

@@ -1,25 +1,28 @@
+import type { Time } from '../lib/Time';
+import type { UICollisionLayer } from '../ui_collision_layer/UICollisionLayer';
+import type { UIElement } from '../ui_collision_layer/UIElement';
 import { AbstractModalState } from './states/AbstractModalState';
 
 class AbstractModalComponent
 {
-  animation: any;
-  container: any;
-  current_state: any;
-  hidden: any;
-  last_state: any;
-  name: any;
-  next_state_collision: any;
-  next_state_name: any;
-  next_state_t: any;
-  states: any;
-  time: any;
-  ui_collision_layer: any;
+  animation: HTMLElement;
+  container: UIElement;
+  current_state: AbstractModalState;
+  hidden: boolean;
+  last_state: AbstractModalState | undefined;
+  name: string;
+  next_state_collision: boolean;
+  next_state_name: string | undefined;
+  next_state_t: number;
+  states: Record<string, AbstractModalState>;
+  time: { delta_time: number };
+  ui_collision_layer: typeof UICollisionLayer;
   
   constructor()
   {
   }
 
-  init(ui_collision_layer: any, time: any)
+  init(ui_collision_layer: typeof UICollisionLayer, time: Time)
   {
     this.name = 'modal';
     this.container = document.querySelector('.modal');
@@ -78,7 +81,7 @@ class AbstractModalComponent
     }
   }
 
-  show_state(state_name: any, collision = true)
+  show_state(state_name: string, collision = true)
   {
     if (this.hidden)
     {
@@ -96,7 +99,7 @@ class AbstractModalComponent
     }
   }
 
-  hide(next_state_name: any, next_state_collision = true)
+  hide(next_state_name: string | undefined, next_state_collision = true)
   {
     this.ui_collision_layer.remove_element(this.container);
 
@@ -112,7 +115,7 @@ class AbstractModalComponent
   {
     if (this.last_state)
     {
-      this.show_state(this.last_state.current_state_name);
+      this.show_state(this.last_state.name);
     }
     else
     {
@@ -121,7 +124,7 @@ class AbstractModalComponent
     }
   }
 
-  set_state(state: any)
+  set_state(state: AbstractModalState)
   {
     if (!this.hidden)
     {

@@ -1,11 +1,11 @@
 class TextScrambler
 {
-  chars: any;
-  el: any;
-  frame: any;
-  is_enabled: any;
-  queue: any;
-  time: any;
+  chars: string;
+  el: HTMLElement;
+  frame: number;
+  is_enabled: boolean;
+  queue: { from: string; to: string; start: number; end: number; char?: string }[];
+  time: number;
   
   constructor()
   {
@@ -13,7 +13,7 @@ class TextScrambler
 
   init()
   {
-    this.el = '';
+    this.el = undefined;
     // this.chars = 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z'
     this.chars = 'F G H JKLTVWXYZ';
     // this.chars = 'OHZI';
@@ -21,7 +21,7 @@ class TextScrambler
     this.time = 10;
   }
 
-  set_text(element: any, new_text: any)
+  set_text(element: HTMLElement, new_text: string)
   {
     const old_text = element.innerText;
     const length = Math.max(old_text.length, new_text.length);

@@ -1,21 +1,23 @@
+import type { AbstractModalComponent } from "../AbstractModalComponent";
+
 class AbstractModalState
 {
-  name: any;
+  name: string;
   
-  constructor(name: any)
+  constructor(name: string)
   {
     this.name = name;
   }
 
-  on_enter()
+  on_enter(modal_component: AbstractModalComponent)
   {
   }
 
-  on_exit()
+  on_exit(modal_component: AbstractModalComponent)
   {
   }
 
-  update()
+  update(modal_component: AbstractModalComponent)
   {
 
   }

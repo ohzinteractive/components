@@ -2,9 +2,9 @@ import { AbstractModalState } from './AbstractModalState';
 
 class ModalState extends AbstractModalState
 {
-  container: any;
+  container: HTMLElement;
   
-  constructor(name: any)
+  constructor(name: string)
   {
     super(name);
 

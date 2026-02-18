@@ -1,35 +1,40 @@
-class ByStepsScrollState
+import type { OMath } from "../../lib/OMath";
+import type { OS } from "../../lib/OS";
+import type { Time } from "../../lib/Time";
+import type { Scroll } from "../Scroll";
+import { ScrollState } from "./ScrollState";
+
+class ByStepsScrollState extends ScrollState
 {
-  current_cooldown: any;
-  current_step_index: any;
-  name: any;
-  omath: any;
-  os: any;
-  steps: any;
-  time: any;
+  current_cooldown: number;
+  current_step_index: number;
+  omath: OMath;
+  os: OS;
+  steps: number[];
+  time: Time;
   
-  constructor(omath: any, os: any, time: any)
+  constructor(omath: OMath, os: OS, time: Time)
   {
+    super('by_steps');
+
     this.omath = omath;
     this.os = os;
     this.time = time;
-
-    this.name = 'idle';
   }
 
-  set_steps(steps: any)
+  set_steps(steps: number[])
   {
     this.steps = steps;
     this.current_step_index = 0;
     this.current_cooldown = 0;
   }
 
-  on_enter(scroll: any)
+  on_enter(scroll: typeof Scroll)
   {
 
   }
 
-  update(scroll: any)
+  update(scroll: typeof Scroll)
   {
     const sensitivity = this.os.is_mobile ? 0.3 : this.os.is_ipad ? 0.5 : this.os.is_mac ? 0.1 : 0;
 
@@ -56,7 +61,7 @@ class ByStepsScrollState
     this.current_cooldown = this.omath.clamp(this.current_cooldown--, 0, 2);
   }
 
-  scroll_forward(scroll: any)
+  scroll_forward(scroll: typeof Scroll)
   {
     this.current_step_index++;
     scroll.current_cooldown = scroll.default_cooldown;
@@ -66,7 +71,7 @@ class ByStepsScrollState
     scroll.set_state(scroll.states.by_steps_scrolling);
   }
 
-  scroll_backward(scroll: any)
+  scroll_backward(scroll: typeof Scroll)
   {
     this.current_step_index--;
     scroll.current_cooldown = scroll.default_cooldown;
@@ -76,12 +81,12 @@ class ByStepsScrollState
     scroll.set_state(scroll.states.by_steps_scrolling);
   }
 
-  on_exit(scroll: any)
+  on_exit(scroll: typeof Scroll)
   {
 
   }
 
-  get_progress(scroll: any)
+  get_progress(scroll: typeof Scroll)
   {
     return (Math.abs(scroll.current) - Math.abs(this.steps[0])) / (Math.abs(this.steps[this.steps.length - 1]) - Math.abs(this.steps[0]));
   }

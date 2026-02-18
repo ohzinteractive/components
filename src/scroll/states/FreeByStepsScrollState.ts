@@ -1,17 +1,25 @@
-class FreeByStepsScrollState
+import type { OMath } from "../../lib/OMath";
+import type { OS } from "../../lib/OS";
+import type { Time } from "../../lib/Time";
+import type { Scroll } from "../Scroll";
+import { ScrollState } from "./ScrollState";
+
+class FreeByStepsScrollState extends ScrollState
 {
-  current_step: any;
-  omath: any;
-  os: any;
-  snap_speed: any;
-  speed: any;
-  steps: any;
-  threshold: any;
-  time: any;
-  velocity: any;
+  current_step: number;
+  omath: OMath;
+  os: OS;
+  snap_speed: number;
+  speed: number;
+  steps: number[];
+  threshold: number;
+  time: Time;
+  velocity: number;
   
-  constructor(os: any, omath: any, time: any)
+  constructor(os: OS, omath: OMath, time: Time)
   {
+    super('free_by_steps');
+    
     this.os = os;
     this.omath = omath;
     this.time = time;
@@ -28,17 +36,17 @@ class FreeByStepsScrollState
     this.threshold = 0.05;
   }
 
-  set_steps(steps: any)
+  set_steps(steps: number[])
   {
     this.steps = steps;
   }
 
-  on_enter(scroll: any)
+  on_enter(scroll: typeof Scroll)
   {
     this.current_step = 0;
   }
 
-  find_nearest_step(x: any, dir: any)
+  find_nearest_step(x: number, dir: number)
   {
     // const min_distance = 99999;
     // const min_step = -1;
@@ -72,7 +80,7 @@ class FreeByStepsScrollState
     return this.steps[0];
   }
 
-  update(scroll: any)
+  update(scroll: typeof Scroll)
   {
     this.velocity += scroll.delta * this.speed;
 
@@ -97,12 +105,12 @@ class FreeByStepsScrollState
     this.velocity *= 0.9;
   }
 
-  on_exit(scroll: any)
+  on_exit(scroll: typeof Scroll)
   {
 
   }
 
-  scroll_forward(scroll: any)
+  scroll_forward(scroll: typeof Scroll)
   {
     // const step = this.find_nearest_step(scroll.current, 1);
 
@@ -110,7 +118,7 @@ class FreeByStepsScrollState
     // this.update(scroll);
   }
 
-  scroll_backward(scroll: any)
+  scroll_backward(scroll: typeof Scroll)
   {
     // const step = this.find_nearest_step(scroll.current, 1);
 
@@ -118,13 +126,13 @@ class FreeByStepsScrollState
     // this.update(scroll);
   }
 
-  scroll_to(scroll: any, target: any)
+  scroll_to(scroll: typeof Scroll, target: number)
   {
     console.warn('implement');
     // scroll.target = target;
   }
 
-  get_progress(scroll: any)
+  get_progress(scroll: typeof Scroll)
   {
     return (Math.abs(scroll.current) - Math.abs(this.steps[0])) / (Math.abs(this.steps[this.steps.length - 1]) - Math.abs(this.steps[0]));
   }

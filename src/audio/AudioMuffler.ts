@@ -1,14 +1,17 @@
+import type { AudioClip } from "../lib/AudioClip";
+import type { Time } from "../lib/Time";
+
 class AudioMuffler
 {
-  changing: any;
-  dir: any;
-  sound: any;
-  sound_name: any;
-  speed: any;
-  t: any;
-  time: any;
+  changing: boolean;
+  dir: number;
+  sound: AudioClip;
+  sound_name: string;
+  speed: number;
+  t: number;
+  time: Time;
   
-  constructor(sound_name: any, sound: any, time: any)
+  constructor(sound_name: string, sound: AudioClip, time: Time)
   {
     this.time = time;
 
@@ -70,23 +73,23 @@ class AudioMuffler
     }
   }
 
-  clamp(value: any, min: any, max: any)
+  clamp(value: number, min: number, max: number)
   {
     return Math.max(min, Math.min(max, value));
   }
 
-  ease_in_out_cubic(x: any)
+  ease_in_out_cubic(x: number)
   {
     return x < 0.5
       ? 4 * x * x * x
       : 1 - Math.pow(-2 * x + 2, 3) / 2;
   }
 
-  linear_map(value: any,
-    from_range_start_value: any,
-    from_range_end_value: any,
-    to_range_start_value: any,
-    to_range_end_value: any)
+  linear_map(value: number,
+    from_range_start_value: number,
+    from_range_end_value: number,
+    to_range_start_value: number,
+    to_range_end_value: number)
   {
     return ((value - from_range_start_value) / (from_range_end_value - from_range_start_value)) * (to_range_end_value - to_range_start_value) + to_range_start_value;
   }

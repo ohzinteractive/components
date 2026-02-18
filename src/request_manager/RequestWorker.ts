@@ -1,6 +1,6 @@
 class RequestWorker
 {
-  is_safari: any;
+  is_safari: boolean;
   response: any;
   
   run()
@@ -32,7 +32,7 @@ class RequestWorker
     });
   }
 
-  request(url: any, external_headers = {}, method: any, data: any, with_data = true)
+  request(url: string, external_headers = {}, method: string, data: any, with_data = true)
   {
     const cache = this.is_safari ? 'no-cache' : 'default';
     // console.log(this.is_safari, url, method, data);
@@ -71,7 +71,7 @@ class RequestWorker
     });
   }
 
-  async on_quick_response(url: any, response: any)
+  async on_quick_response(url: string, response: any)
   {
     postMessage({
       type: 'response',
@@ -80,7 +80,7 @@ class RequestWorker
     });
   }
 
-  async on_error(url: any, response: any)
+  async on_error(url: string, response: any)
   {
     console.warn(url, response);
 

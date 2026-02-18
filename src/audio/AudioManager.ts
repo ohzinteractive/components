@@ -1,28 +1,31 @@
+import type { AudioListener } from 'three';
+import type { ResourceContainer } from '../lib/ResourceContainer';
+import type { Time } from '../lib/Time';
 import { AudioEvents } from './AudioEvents';
 import { AudioMuffler } from './AudioMuffler';
 
 class AudioManager
 {
-  AudioListener: any;
-  audio_events: any;
-  audio_mufflers: any;
-  audio_mufflers_keys: any;
-  first_time_unmute: any;
-  initialized: any;
-  listener: any;
-  loop_sounds: any;
-  max_volume: any;
-  muted: any;
-  muted_by_user: any;
-  muting: any;
-  paused_sounds: any;
-  resourse_container: any;
-  sounds: any;
-  sounds_names: any;
-  sounds_to_play: any;
-  time: any;
+  AudioListener: AudioListener;
+  audio_events: AudioEvents;
+  audio_mufflers: Record<string, AudioMuffler>;
+  audio_mufflers_keys: string[];
+  first_time_unmute: boolean;
+  initialized: boolean;
+  listener: AudioListener | undefined;
+  loop_sounds: string[];
+  max_volume: number;
+  muted: boolean;
+  muted_by_user: boolean;
+  muting: boolean;
+  paused_sounds: string[];
+  resourse_container: ResourceContainer;
+  sounds: Record<string, any>;
+  sounds_names: Record<string, any>;
+  sounds_to_play: string[];
+  time: Time;
   
-  init(audio_listener_klass: any, resourse_container: any, time: any)
+  init(audio_listener_klass: AudioListener, resourse_container: ResourceContainer, time: Time)
   {
     this.AudioListener = audio_listener_klass;
     this.resourse_container = resourse_container;
@@ -67,7 +70,7 @@ class AudioManager
     this.audio_events.init();
   }
 
-  init_sounds(scene_sounds_data: any)
+  init_sounds(scene_sounds_data: object[])
   {
     const sound_names = this.get_sounds_names(scene_sounds_data);
 
@@ -102,7 +105,7 @@ class AudioManager
     }
   }
 
-  play(sound_names_array: any)
+  play(sound_names_array: string[] | string)
   {
     let sound_names = sound_names_array;
 
@@ -165,7 +168,7 @@ class AudioManager
     }
   }
 
-  pause(sound_name: any)
+  pause(sound_name: string)
   {
     if (this.sounds[sound_name])
     {
@@ -186,7 +189,7 @@ class AudioManager
     }
   }
 
-  stop(sound_name: any)
+  stop(sound_name: string)
   {
     if (this.sounds[sound_name])
     {
@@ -315,7 +318,7 @@ class AudioManager
     }
   }
 
-  setup_sounds_names(sounds: any)
+  setup_sounds_names(sounds: object[])
   {
     for (let i = 0; i < sounds.length; i++)
     {
@@ -325,7 +328,7 @@ class AudioManager
     }
   }
 
-  get_sounds_names(sounds: any)
+  get_sounds_names(sounds: object[]): string[]
   {
     const sounds_names = [];
 

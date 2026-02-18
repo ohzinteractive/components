@@ -1,31 +1,39 @@
+import type { EasingFunctions } from '../lib/EasingFunctions';
+import type { Input } from '../lib/Input';
+import type { OMath } from '../lib/OMath';
+import type { OS } from '../lib/OS';
+import type { Time } from '../lib/Time';
+
 import { ByStepsScrollState } from './states/ByStepsScrollState';
 import { ByStepsScrollingScrollState } from './states/ByStepsScrollingScrollState';
 
 import { FreeByStepsScrollState } from './states/FreeByStepsScrollState';
 import { FreeScrollState } from './states/FreeScrollState';
+import type { ScrollState } from './states/ScrollState';
 
 class Scroll
 {
-  current: any;
-  current_state: any;
-  default_cooldown: any;
-  delta: any;
-  duration: any;
-  easing_functions: any;
-  enabled: any;
-  framerate: any;
-  input: any;
-  omath: any;
-  os: any;
-  states: any;
-  target: any;
-  time: any;
+  current: number;
+  current_state: ScrollState;
+  default_cooldown: number;
+  current_cooldown: number;
+  delta: number;
+  duration: number;
+  easing_functions: EasingFunctions;
+  enabled: boolean;
+  framerate: number;
+  input: Input;
+  omath: OMath;
+  os: OS;
+  states: { [key: string]: ScrollState };
+  target: number;
+  time: Time;
 
   constructor()
   {
   }
 
-  init(input: any, os: any, omath: any, time: any, easing_functions: any)
+  init(input: Input, os: OS, omath: OMath, time: Time, easing_functions: EasingFunctions)
   {
     this.input = input;
     this.os = os;
@@ -40,6 +48,7 @@ class Scroll
 
     this.duration = 1;
     this.default_cooldown = 1.4;
+    this.current_cooldown = 0;
 
     this.framerate = 60;
 
@@ -72,7 +81,7 @@ class Scroll
     this.enabled = false;
   }
 
-  set_free_scrolling_by_steps(steps: any, reset = true)
+  set_free_scrolling_by_steps(steps: number[], reset = true)
   {
     if (reset)
     {
@@ -83,7 +92,7 @@ class Scroll
     this.set_state(this.states.free_by_steps);
   }
 
-  set_free_scrolling(from: any, to: any, reset = true)
+  set_free_scrolling(from: number, to: number, reset = true)
   {
     this.states.free.set_from_to(from, to);
     this.set_state(this.states.free);
@@ -94,7 +103,7 @@ class Scroll
     }
   }
 
-  set_step_scrolling(steps: any, reset = true)
+  set_step_scrolling(steps: number[], reset = true)
   {
     this.states.by_steps.set_steps(steps);
     this.set_state(this.states.by_steps);
@@ -105,7 +114,7 @@ class Scroll
     }
   }
 
-  set_state(new_state: any)
+  set_state(new_state: ScrollState)
   {
     this.current_state.on_exit(this);
     this.current_state = new_state;
@@ -122,7 +131,7 @@ class Scroll
     this.current_state.scroll_backward(this);
   }
 
-  scroll_to(target: any)
+  scroll_to(target: number)
   {
     this.current_state.scroll_to(this, target);
   }

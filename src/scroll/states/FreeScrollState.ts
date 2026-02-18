@@ -1,14 +1,21 @@
-class FreeScrollState
+import type { OMath } from "../../lib/OMath";
+import type { OS } from "../../lib/OS";
+import type { Scroll } from "../Scroll";
+import { ScrollState } from "./ScrollState";
+
+class FreeScrollState extends ScrollState
 {
-  force: any;
-  from: any;
-  omath: any;
-  os: any;
-  sensitivity: any;
-  to: any;
+  force: number;
+  from: number;
+  omath: OMath;
+  os: OS;
+  sensitivity: number;
+  to: number;
   
-  constructor(omath: any, os: any)
+  constructor(omath: OMath, os: OS)
   {
+    super('free');
+
     this.omath = omath;
     this.os = os;
 
@@ -22,17 +29,17 @@ class FreeScrollState
     this.to = to;
   }
 
-  set_sensitivity(sensitivity: any)
+  set_sensitivity(sensitivity: number)
   {
     this.sensitivity = sensitivity;
   }
 
-  on_enter(scroll: any)
+  on_enter(scroll: typeof Scroll)
   {
 
   }
 
-  update(scroll: any)
+  update(scroll: typeof Scroll)
   {
     if (scroll.enabled)
     {
@@ -70,27 +77,27 @@ class FreeScrollState
   //   scroll.current += delta * 0.1 * x;
   // }
 
-  on_exit(scroll: any)
+  on_exit(scroll: typeof Scroll)
   {
 
   }
 
-  scroll_forward(scroll: any)
+  scroll_forward(scroll: typeof Scroll)
   {
     scroll.target += 1;
   }
 
-  scroll_backward(scroll: any)
+  scroll_backward(scroll: typeof Scroll)
   {
     scroll.target -= 1;
   }
 
-  scroll_to(scroll: any, target: any)
+  scroll_to(scroll: typeof Scroll, target: number)
   {
     scroll.target = target;
   }
 
-  get_progress(scroll: any)
+  get_progress(scroll: typeof Scroll)
   {
     return this.omath.linear_map(scroll.current, this.from, this.to, 0, 1);
   }

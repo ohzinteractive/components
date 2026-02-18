@@ -1,9 +1,11 @@
+import type { Browser } from "../lib/Browser";
+
 class RequestManager
 {
-  browser: any;
-  callbacks: any;
-  error_callbacks: any;
-  worker: any;
+  browser: Browser;
+  callbacks: Record<string, Function>;
+  error_callbacks: Record<string, Function>;
+  worker: Worker;
   
   constructor()
   {
@@ -14,14 +16,14 @@ class RequestManager
     this.worker = undefined;
   }
 
-  init(browser: any)
+  init(browser: Browser)
   {
     this.browser = browser;
     this.worker = this.__create_worker();
     this.__setup_worker();
   }
 
-  on_message(e: any)
+  on_message(e: MessageEvent)
   {
     const message = e.data;
     // console.log('ON MESSAGE', message, this.callbacks);
@@ -36,7 +38,7 @@ class RequestManager
     }
   }
 
-  get(url: any, callback: any, error_callback: any)
+  get(url: string, callback: Function, error_callback: Function)
   {
     this.__request({
       url: url,
@@ -46,7 +48,7 @@ class RequestManager
     });
   }
 
-  post(url: any, data: any, callback: any, error_callback: any)
+  post(url: string, data: any, callback: Function, error_callback: Function)
   {
     this.__request({
       url: url,
@@ -57,7 +59,7 @@ class RequestManager
     });
   }
 
-  put(url: any, data: any, callback: any, error_callback: any)
+  put(url: string, data: any, callback: Function, error_callback: Function)
   {
     this.__request({
       url: url,
@@ -68,7 +70,7 @@ class RequestManager
     });
   }
 
-  delete(url: any, data: any, callback: any, error_callback: any)
+  delete(url: string, data: any, callback: Function, error_callback: Function)
   {
     this.__request({
       url: url,

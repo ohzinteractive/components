@@ -1,15 +1,23 @@
-class ByStepsScrollingScrollState
+import type { EasingFunctions } from "../../lib/EasingFunctions";
+import type { OMath } from "../../lib/OMath";
+import type { Time } from "../../lib/Time";
+import type { Scroll } from "../Scroll";
+import { ScrollState } from "./ScrollState";
+
+class ByStepsScrollingScrollState extends ScrollState
 {
-  easing_functions: any;
-  from: any;
-  name: any;
-  omath: any;
-  t: any;
-  time: any;
-  to: any;
+  easing_functions: EasingFunctions;
+  from: number;
+  name: string;
+  omath: OMath;
+  t: number;
+  time: Time;
+  to: number;
   
-  constructor(omath: any, time: any, easing_functions: any)
+  constructor(omath: OMath, time: Time, easing_functions: EasingFunctions)
   {
+    super('by_steps_scrolling');
+    
     this.omath = omath;
     this.time = time;
     this.easing_functions = easing_functions;
@@ -20,19 +28,19 @@ class ByStepsScrollingScrollState
     this.to = 0;
   }
 
-  set_to(to: any)
+  set_to(to: number)
   {
     this.to = to;
   }
 
-  on_enter(scroll: any)
+  on_enter(scroll: typeof Scroll)
   {
     this.t = 0;
 
     this.from = scroll.current;
   }
 
-  update(scroll: any)
+  update(scroll: typeof Scroll)
   {
     this.t += this.time.delta_time / scroll.duration;
 
