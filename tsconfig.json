@@ -15,8 +15,14 @@
     // Removing this would place the .d.ts files
     // next to the .js files
     "lib": ["es2021", "dom"],
+    "target": "es2021",
     "outDir": "types",
     "noImplicitAny": true,
-    "module": "esnext"
+    "module": "esnext",
+    "types": ["three", "@webgpu/types"],
+    "paths": {
+      "three/webgpu": ["../node_modules/@types/three/build/three.webgpu.d.ts"],
+      "three/tsl": ["../node_modules/@types/three/build/three.tsl.d.ts"],
+    }
   }
 }
