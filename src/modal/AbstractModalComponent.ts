@@ -3,7 +3,7 @@ import type { UICollisionLayer } from '../ui_collision_layer/UICollisionLayer';
 import type { UIElement } from '../ui_collision_layer/UIElement';
 import { AbstractModalState } from './states/AbstractModalState';
 
-class AbstractModalComponent
+export class AbstractModalComponent
 {
   animation: HTMLElement;
   container: UIElement;
@@ -99,7 +99,7 @@ class AbstractModalComponent
     }
   }
 
-  hide(next_state_name: string | undefined, next_state_collision = true)
+  hide(next_state_name?: string, next_state_collision: boolean = true)
   {
     this.ui_collision_layer.remove_element(this.container);
 
@@ -119,7 +119,6 @@ class AbstractModalComponent
     }
     else
     {
-      // @ts-expect-error TS(2554): Expected 1-2 arguments, but got 0.
       this.hide();
     }
   }
@@ -136,5 +135,3 @@ class AbstractModalComponent
     this.current_state.on_enter(this);
   }
 }
-
-export { AbstractModalComponent };

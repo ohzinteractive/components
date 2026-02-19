@@ -1,3 +1,4 @@
+import type { AbstractModalComponent } from '../AbstractModalComponent';
 import { AbstractModalState } from './AbstractModalState';
 
 class ModalState extends AbstractModalState
@@ -11,17 +12,17 @@ class ModalState extends AbstractModalState
     this.container = document.querySelector(`.modal__container.${this.name}`);
   }
 
-  on_enter()
+  on_enter(modal_component: AbstractModalComponent)
   {
     this.container.classList.remove('hidden');
   }
 
-  on_exit()
+  on_exit(modal_component: AbstractModalComponent)
   {
     this.container.classList.add('hidden');
   }
 
-  update()
+  update(modal_component: AbstractModalComponent)
   {
 
   }

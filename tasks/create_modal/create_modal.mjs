@@ -1,5 +1,5 @@
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
 import replace from 'replace-in-file';
 
 class ModalCreator
@@ -11,7 +11,7 @@ class ModalCreator
   create_modal(name)
   {
     const js_folder = path.join('..', 'app', 'js', 'view_components', 'modal', 'states');
-    const js_view_path = path.join(js_folder, `${this.capitalize(name)}ModalState.js`);
+    const js_view_path = path.join(js_folder, `${this.capitalize(name)}ModalState.ts`);
 
     const pug_folder = path.join('..', 'app', 'views', 'components', 'modal', 'states');
     const pug_path = path.join(pug_folder, `${name}.pug`);
@@ -31,7 +31,7 @@ class ModalCreator
   __update_modal_component_file(name)
   {
     const new_import = `__MODAL_STATES_IMPORTS__\nimport { ${this.capitalize(name)}ModalState } from './states/${this.capitalize(name)}ModalState';`;
-    const file_path = path.join('..', 'app', 'js', 'view_components', 'modal', 'ModalComponent.js');
+    const file_path = path.join('..', 'app', 'js', 'view_components', 'modal', 'ModalComponent.ts');
 
     const options_1 = {
       files: file_path,
@@ -114,7 +114,7 @@ class ModalCreator
       else
       {
         fs.copyFileSync(
-          path.join('tasks', 'create_modal', `Template${file_type}.js`),
+          path.join('tasks', 'create_modal', `Template${file_type}.ts`),
           view_path
         );
 
