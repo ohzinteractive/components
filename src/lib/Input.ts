@@ -1,6 +1,7 @@
 // This interface declare the Input component found in PIT.js
 
-import type { Vector2 } from "three";
+import type { Pointer } from "./input/Pointer";
+import type { Vector2 } from "./input/Vector2";
 
 export interface Input {
     active_input_module: any;
@@ -46,7 +47,7 @@ export interface Input {
 
     pointer_is_over_element(elem: any): boolean;
 
-    get pointers(): Vector2[];
+    get pointers(): Pointer[];
     get pointer_pos(): Vector2;
     get pointer_pos_delta(): Vector2;
     get NDC(): Vector2;

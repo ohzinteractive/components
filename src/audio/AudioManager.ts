@@ -288,8 +288,7 @@ class AudioManager
     }
   }
 
-  // @ts-expect-error TS(7006): Parameter 'except_sound_names' implicitly has an '... Remove this comment to see the full error message
-  stop_all_sounds(except_sound_names = [])
+  stop_all_sounds(except_sound_names: string[] = [])
   {
     const sound_names = Object.keys(this.sounds);
 
@@ -304,8 +303,7 @@ class AudioManager
     }
   }
 
-  // @ts-expect-error TS(7006): Parameter 'except_sound_names' implicitly has an '... Remove this comment to see the full error message
-  stop_all_loop_sounds(except_sound_names = [])
+  stop_all_loop_sounds(except_sound_names: string[] = [])
   {
     for (let i = 0; i < this.loop_sounds.length; i++)
     {
@@ -318,7 +316,7 @@ class AudioManager
     }
   }
 
-  setup_sounds_names(sounds: object[])
+  setup_sounds_names(sounds: { name: string }[])
   {
     for (let i = 0; i < sounds.length; i++)
     {
@@ -328,7 +326,7 @@ class AudioManager
     }
   }
 
-  get_sounds_names(sounds: object[]): string[]
+  get_sounds_names(sounds: { name: string }[]): string[]
   {
     const sounds_names = [];
 
