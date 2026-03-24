@@ -6,7 +6,7 @@ import { AudioMuffler } from './AudioMuffler';
 
 class AudioManager
 {
-  AudioListener: AudioListener;
+  AudioListener: typeof AudioListener;
   audio_events: AudioEvents;
   audio_mufflers: Record<string, AudioMuffler>;
   audio_mufflers_keys: string[];
@@ -24,8 +24,8 @@ class AudioManager
   sounds_names: Record<string, any>;
   sounds_to_play: string[];
   time: Time;
-  
-  init(audio_listener_klass: AudioListener, resourse_container: ResourceContainer, time: Time)
+
+  init(audio_listener_klass: typeof AudioListener, resourse_container: ResourceContainer, time: Time)
   {
     this.AudioListener = audio_listener_klass;
     this.resourse_container = resourse_container;
@@ -228,6 +228,17 @@ class AudioManager
       // this.muting = true;
       // this.muting_t = 0;
       // this.muting_dir = 1;
+    }
+  }
+
+  set_volume(normalized: number)
+  {
+    const v = Math.min(1, Math.max(0, normalized));
+    this.max_volume = v;
+
+    if (this.listener && !this.muted)
+    {
+      this.listener.setMasterVolume(v);
     }
   }
 
