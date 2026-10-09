@@ -1,6 +1,21 @@
+import type { OS } from '../lib/OS';
+
+// three's AudioContext wrapper, whose getContext() returns the native context
+interface AudioContextProvider
+{
+  getContext(): globalThis.AudioContext;
+}
+
 export class AudioUnlocker
 {
-  constructor(os, audio_context)
+  AudioContext: AudioContextProvider;
+  is_unlocked: boolean;
+  max_retries: number;
+  os: OS;
+  retry_count: number;
+  unlock_bind: () => Promise<void>;
+
+  constructor(os: OS, audio_context: AudioContextProvider)
   {
     this.os = os;
     this.AudioContext = audio_context;
@@ -38,7 +53,8 @@ export class AudioUnlocker
         await this.unlock_context();
 
         // Only create test buffer if context is now running
-        if (audio_context.state === 'running')
+        // (state changes during the await, so drop TS's earlier narrowing)
+        if ((audio_context.state as AudioContextState) === 'running')
         {
           // create empty buffer and play it
           const buffer = audio_context.createBuffer(1, 1, 22050);
@@ -105,7 +121,8 @@ export class AudioUnlocker
         await audio_context.resume();
 
         // Verify the context is actually running
-        if (audio_context.state === 'running')
+        // (state changes during the await, so drop TS's earlier narrowing)
+        if ((audio_context.state as AudioContextState) === 'running')
         {
           console.log('Audio context successfully resumed');
           this.retry_count = 0; // Reset retry count on success
@@ -122,7 +139,7 @@ export class AudioUnlocker
       catch (e)
       {
         console.warn('Audio context resume failed:', e.message);
-        this.handle_resume_failure(e);
+        this.handle_resume_failure();
       }
     }
   }

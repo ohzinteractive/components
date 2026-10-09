@@ -120,14 +120,7 @@ export class PerformanceController
     this.fps_counter.reset();
     this.performance_t = 0;
 
-    this.graphics.on_resize([{
-      contentRect: {
-        x: this.oscreen.position.x,
-        y: this.oscreen.position.y,
-        width: this.oscreen.width,
-        height: this.oscreen.height
-      }
-    }]);
+    this.__apply_dpr();
   }
 
   __increase_dpr()
@@ -139,13 +132,20 @@ export class PerformanceController
     // this.fps_counter.reset();
     this.performance_t = 0;
 
-    this.graphics.on_resize([{
+    this.__apply_dpr();
+  }
+
+  __apply_dpr()
+  {
+    const entry = {
       contentRect: {
         x: this.oscreen.position.x,
         y: this.oscreen.position.y,
         width: this.oscreen.width,
         height: this.oscreen.height
       }
-    }]);
+    } as ResizeObserverEntry;
+
+    this.graphics.on_resize([entry], this.settings.dpr);
   }
 }

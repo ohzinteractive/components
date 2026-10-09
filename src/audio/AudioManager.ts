@@ -1,4 +1,5 @@
 import type { AudioListener } from 'three';
+import type { AudioClip } from '../lib/AudioClip';
 import type { ResourceContainer } from '../lib/ResourceContainer';
 import type { Time } from '../lib/Time';
 import { AudioEvents } from './AudioEvents';
@@ -18,7 +19,7 @@ class AudioManager
   muted: boolean;
   muted_by_user: boolean;
   muting: boolean;
-  paused_sounds: string[];
+  paused_sounds: AudioClip[];
   resourse_container: ResourceContainer;
   sounds: Record<string, any>;
   sounds_names: Record<string, any>;
@@ -70,7 +71,7 @@ class AudioManager
     this.audio_events.init();
   }
 
-  init_sounds(scene_sounds_data: object[])
+  init_sounds(scene_sounds_data: { name: string }[])
   {
     const sound_names = this.get_sounds_names(scene_sounds_data);
 
@@ -107,12 +108,7 @@ class AudioManager
 
   play(sound_names_array: string[] | string)
   {
-    let sound_names = sound_names_array;
-
-    if (Array.isArray(sound_names_array) === false)
-    {
-      sound_names = [sound_names_array];
-    }
+    const sound_names = Array.isArray(sound_names_array) ? sound_names_array : [sound_names_array];
 
     for (let i = 0; i < sound_names.length; i++)
     {
