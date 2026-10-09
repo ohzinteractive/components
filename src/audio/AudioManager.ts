@@ -183,6 +183,8 @@ class AudioManager
       const paused_sound = this.paused_sounds[i];
       paused_sound.play();
     }
+
+    this.paused_sounds = [];
   }
 
   stop(sound_name: string)
@@ -193,6 +195,9 @@ class AudioManager
       {
         this.sounds[sound_name].stop();
       }
+
+      // A stopped sound must not resume on the next unpause_sounds()
+      this.paused_sounds = this.paused_sounds.filter((sound) => sound !== this.sounds[sound_name]);
     }
   }
 
