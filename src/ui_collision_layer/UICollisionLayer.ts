@@ -50,7 +50,7 @@ class UICollisionLayer
 
     for (const element of this.elements)
     {
-      this.mutation_observer.observe(element as Node, this.mutation_observer_config);
+      this.mutation_observer.observe(element, this.mutation_observer_config);
     }
   }
 

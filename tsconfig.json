@@ -19,10 +19,7 @@
     "outDir": "types",
     "noImplicitAny": true,
     "module": "esnext",
-    "types": ["three"],
-    "paths": {
-      "three/webgpu": ["../node_modules/@types/three/build/three.webgpu.d.ts"],
-      "three/tsl": ["../node_modules/@types/three/build/three.tsl.d.ts"],
-    }
+    "moduleResolution": "bundler",
+    "types": ["three"]
   }
 }
