@@ -20,8 +20,7 @@
     "create-tag": "node tasks/app/create_tag.mjs",
     "fix-syntax": "npx eslint src --fix || echo 'Done.'",
     "generate-types": "npx -p typescript tsc",
-    "upload": "yarn build && npm publish && yarn create-tag",
-    "create-modal": "node ./tasks/create_modal/create_modal.mjs"
+    "upload": "yarn build && npm publish && yarn create-tag"
   },
   "repository": {
     "type": "git",
