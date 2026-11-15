@@ -2,7 +2,7 @@
   "name": "ohzi-components",
   "version": "4.2.1",
   "description": "OHZI Components Library",
-  "source": "src/index.ts",
+  "source": "src/inde1x.ts",
   "module": "build/index.module.mjs",
   "types": "types/index.d.ts",
   "files": [
